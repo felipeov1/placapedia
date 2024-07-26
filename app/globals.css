@@ -1,80 +1,130 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-html {
-  scroll-behavior: smooth;
+/* Nav Bar */
+.navbar {
+  height: 80px;
+  transition: background-color 0.5s ease, transform 0.5s ease;
+  transform: translateY(0);
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
-  @layer base {
-    :root {
-      --background: 0 0% 100%;
-      --foreground: 222.2 84% 4.9%;
+.nav-link {
+  color: #353f4f;
+  font-size: 16px;
+  font-weight: 800;
+  position: relative;
+  padding-bottom: 5px;
+  overflow: hidden;
+  text-decoration: none;
+}
 
-      --card: 0 0% 100%;
-      --card-foreground: 222.2 84% 4.9%;
+.nav-link:hover {
+  color: #03045E;
+}
 
-      --popover: 0 0% 100%;
-      --popover-foreground: 222.2 84% 4.9%;
+.nav-item {
+  margin-right: 10px;
+}
 
-      --primary: 222.2 47.4% 11.2%;
-      --primary-foreground: 210 40% 98%;
+.nav-link::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: #03045E;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transition: width 0.5s ease;
+}
 
-      --secondary: 210 40% 96.1%;
-      --secondary-foreground: 222.2 47.4% 11.2%;
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after {
+  width: 100%;
+}
 
-      --muted: 210 40% 96.1%;
-      --muted-foreground: 215.4 16.3% 46.9%;
+/* Botões de Acesso */
+.btns-acess .btn {
+  height: fit-content;
+  transition: background-color 0.3s ease, filter 0.3s ease;
+  background-color: #15254d !important;
+  border: none;
+  border-radius: 3px !important;
+  color: #fff;
+}
 
-      --accent: 210 40% 96.1%;
-      --accent-foreground: 222.2 47.4% 11.2%;
+.btns-acess .btn:hover {
+  background-color: #15254d !important;
+  filter: brightness(80%);
+}
 
-      --destructive: 0 84.2% 60.2%;
-      --destructive-foreground: 210 40% 98%;
+/* Estilos de Navbar Transparente e Colorido */
+.navbar-transparent {
+  background-color: transparent;
+}
 
-      --border: 214.3 31.8% 91.4%;
-      --input: 214.3 31.8% 91.4%;
-      --ring: 222.2 84% 4.9%;
+.navbar-colored {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-10px);
+  box-shadow: 0 2px 3px rgba(96, 96, 96, .1);
+}
 
-      --radius: 0.5rem;
-    }
+.navbar-colored .container {
+  padding-top: 10px;
+}
 
-    .dark {
-      --background: 222.2 84% 4.9%;
-      --foreground: 210 40% 98%;
+/* MainSection */
 
-      --card: 222.2 84% 4.9%;
-      --card-foreground: 210 40% 98%;
+#main_section {
+  padding: 2rem;
+  background-image: linear-gradient(180deg, rgba(0, 102, 255, 0.041) 50%, rgba(236, 234, 253, .05) 100%);  display: flex;
+  align-items: center;
+}
 
-      --popover: 222.2 84% 4.9%;
-      --popover-foreground: 210 40% 98%;
+#first_section {
+  max-width: 600px;
 
-      --primary: 210 40% 98%;
-      --primary-foreground: 222.2 47.4% 11.2%;
+}
 
-      --secondary: 217.2 32.6% 17.5%;
-      --secondary-foreground: 210 40% 98%;
+#first_section_title {
+  font-size: 2rem;
+  font-weight: bold;
+}
 
-      --muted: 217.2 32.6% 17.5%;
-      --muted-foreground: 215 20.2% 65.1%;
+#first_section_paragraph {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
 
-      --accent: 217.2 32.6% 17.5%;
-      --accent-foreground: 210 40% 98%;
+#first_section_search {
+  margin-top: 2rem;
+}
 
-      --destructive: 0 62.8% 30.6%;
-      --destructive-foreground: 210 40% 98%;
+#title_input_search {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
 
-      --border: 217.2 32.6% 17.5%;
-      --input: 217.2 32.6% 17.5%;
-      --ring: 212.7 26.8% 83.9%;
-    }
-  }
+#input_search .btn {
+  background-color: #03045E;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+}
 
-  @layer base {
-    * {
-      @apply border-border;
-    }
-    body {
-      @apply bg-background text-foreground;
-    }
-  }
+#input_search .btn:hover {
+  background-color: #023E8A;
+}
+
+#img_car {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  margin-right: 2rem !important; 
+}
+
+#img_car img {
+  width: 100%;
+  height: auto;
+}

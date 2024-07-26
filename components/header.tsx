@@ -1,26 +1,37 @@
 "use client";
 
-import React, { useContext } from 'react';
-
+import React, { useEffect, useContext } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-
-import { Menu } from 'lucide-react';
-
+import $ from 'jquery'; // Importar jQuery
 import { AppContext } from '@/context/context';
-
-import {
-    Sheet,
-    SheetContent,
-    SheetHeader,
-    SheetTrigger,
-} from "@/components/ui/sheet";
 import { useRouter } from 'next/navigation';
 
 function Header() {
-
     const router = useRouter();
     const { user, signOut } = useContext(AppContext);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const navbar = document.getElementById('navbar');
+            if (navbar) {
+                if (window.scrollY > 50) {
+                    navbar.classList.remove('navbar-transparent');
+                    navbar.classList.add('navbar-colored');
+                } else {
+                    navbar.classList.remove('navbar-colored');
+                    navbar.classList.add('navbar-transparent');
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        // Cleanup function to remove the event listener
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     const handleClose = () => {
         signOut();
@@ -28,89 +39,52 @@ function Header() {
     };
 
     return (
-        <Sheet>
-            <div className='w-full flex justify-center bg-white h-20 shadow-sm z-50'>
-                {/* DESKTOP */}
-                <nav className='max-w-[1440px] flex items-center justify-between px-4 w-full'>
-                    <Link href="/">
-                        <Image src="/logo.svg" alt="logo" width={100} height={100} />
-                    </Link>
-                    <div className='hidden md:block'>
-                        <ul className='flex items-center gap-10'>
-                            {user && (
-                                <li>
-                                    <Link className='font-bold text-blue-500 transition-colors hover:text-blue-700' href="/home">Minha Conta</Link>
-                                </li>
-                            )}
+        <nav id="navbar" className="navbar navbar-expand-lg navbar-light navbar-transparent fixed-top p-0">
+            <div className="container">
+                <Link className="navbar-brand mx-auto" href="/">
+                    <Image src="/logo.svg" alt="Logo" height={45} width={200} />
+                </Link>
 
-                            <li>
-                                <Link className='font-bold text-blue-500 transition-colors hover:text-blue-700' href="/">Consultar veiculo</Link>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+
+                <div className="collapse navbar-collapse justify-content-lg-center" id="navbarNav">
+                    <ul className="navbar-nav">
+                        {user && (
+                            <li className="nav-item">
+                                <Link className="nav-link" href="/home">Minha Conta</Link>
                             </li>
-
-                            {/* <li>
-                                <Link className='font-bold text-placapedia transition-colors hover:text-placapedia_dark' href="/about">Sobre</Link>
-                            </li> */}
-
-                            <li>
-                                <Link className='font-bold text-blue-500 transition-colors hover:text-blue-700' href="/contact">Contato</Link>
+                        )}
+                        <li className="nav-item">
+                            <Link className="nav-link" href="/">Consultar Veículo</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link className="nav-link" href="/contact">Contato</Link>
+                        </li>
+                        {!user && (
+                            <li className="nav-item">
+                                <Link className="nav-link" href="/login">Login</Link>
                             </li>
-
-                            {!user && (
-                                <li>
-                                    <Link className='font-bold text-blue-500 cursor-pointer transition-colors hover:text-blue-700' href="/login">Login</Link>
-                                </li>
-                            )}
-
-                            {user && (
-                                <li>
-                                    <span onClick={handleClose} className='font-bold text-red-500 cursor-pointer transition-colors hover:text-red-600'>Sair</span>
-                                </li>
-                            )}
-                        </ul>
-                    </div>
-                    {/* MOBILE */}
-                    <div className='block md:hidden'>
-                        <SheetTrigger><Menu /></SheetTrigger>
-                        <SheetContent>
-                            <SheetHeader>
-                                <ul className='flex flex-col items-center gap-10 mt-10'>
-                                    {user && (
-                                        <li>
-                                            <Link className='font-bold text-blue-500 transition-colors hover:text-blue-700' href="/home">Minha Conta</Link>
-                                        </li>
-                                    )}
-
-                                    <li>
-                                        <Link className='font-bold text-blue-500 transition-colors hover:text-blue-700' href="/">Consultar veiculo</Link>
-                                    </li>
-
-                                    {/* <li>
-                                        <Link className='font-bold text-placapedia transition-colors hover:text-blue-700' href="/about">Sobre</Link>
-                                    </li> */}
-
-                                    <li>
-                                        <Link className='font-bold text-blue-500 transition-colors hover:text-blue-700' href="/contact">Contato</Link>
-                                    </li>
-
-                                    {!user && (
-                                        <li>
-                                            <Link className='font-bold text-blue-500 cursor-pointer transition-colors hover:text-blue-700' href="/login">Login</Link>
-                                        </li>
-                                    )}
-
-                                    {user && (
-                                        <li>
-                                            <span onClick={handleClose} className='font-bold text-red-500 cursor-pointer transition-colors hover:text-red-600'>Sair</span>
-                                        </li>
-                                    )}
-                                </ul>
-                            </SheetHeader>
-                        </SheetContent>
-                    </div>
-                </nav>
+                        )}
+                        {user && (
+                            <li className="nav-item">
+                                <span onClick={handleClose} className="nav-link cursor-pointer">Sair</span>
+                            </li>
+                        )}
+                    </ul>
+                </div>
+                <div className="btns-acess">
+                    {!user && (
+                        <Link href="/pagina-de-login" className="btn btn-primary" style={{ fontWeight: 500 }}>
+                            <i className="fa-solid fa-user" style={{ fontWeight: 500 }}></i> Fazer Login
+                        </Link>
+                    )}
+                </div>
             </div>
-        </Sheet >
+        </nav>
     );
-};
+}
 
 export default Header;
