@@ -2,20 +2,13 @@
 
 import React, { useContext, useState } from 'react';
 import Image from 'next/image';
-
 import { League_Gothic } from "next/font/google";
-
-import { ArrowDown, Search } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { Input } from '@/components/ui/input';
 import { AppContext } from '@/context/context';
 import { useRouter } from 'next/navigation';
-import Cards from './cards';
 import { placaFormater } from '@/utils/formater';
 import { toast } from '@/components/ui/use-toast';
-// import AdsVerticalBanner from '@/components/AdsVerticalBanner';
 import AdsSquareBanner from '@/components/AdsSquareBanner';
-
 import { motion } from "framer-motion";
 
 const gothic = League_Gothic({ subsets: ["latin"] });
@@ -48,22 +41,26 @@ function MainSection() {
 
         if (result) {
             localStorage.removeItem('result');
-        };
+        }
 
         if (!user) {
             router.replace('/login');
         } else {
-            if (!dataPlaca) {
-                return;
-            }
             router.replace(`/search/${dataPlaca}`);
+        }
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSubmit(e as unknown as React.FormEvent); // Dispara a função de submit
         }
     };
 
     return (
         <motion.section
             id='main_section'
-            className="container-fluid p-5 d-flex justify-content-around align-items-center"
+            className="container-fluid d-flex justify-content-around align-items-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{
@@ -72,49 +69,43 @@ function MainSection() {
                 ease: [0, 0.71, 0.2, 1.01]
             }}
         >
-            {/* Adicionar o Banner de Anúncios Lateral (opcional) */}
-            {/* <div className='d-none d-lg-block'>
-                <AdsVerticalBanner />
-            </div> */}
-
             <div id='first_section' className="w-100 d-flex flex-column align-items-start justify-content-center p-4">
                 <div className="d-none d-md-block">
                     <AdsSquareBanner />
                 </div>
                 <div className="mb-4">
-                    <h1 id='first_section_title' className="mb-3">Deseja consultar um veículo pela placa?</h1>
-                    <p id='first_section_paragraph'>A forma mais rápida e prática de obter informações de um veículo pela placa.</p>
+                    <h1 id='first_section_title' className="mb-2">Antes de comprar, tenha certeza de que o veículo não tem um passado como este!</h1>
+                    {/* <h3>Evite surpresas e conheça o histórico completo do veículo!</h3> */}
+                    <p id='first_section_subtitle'>Nuca Compre Um Veículo Sem Conehcer Seu Histórico Primeiro</p>
+                    <p id='first_section_paragraph'>Digite a placa e consulte o histórico completo do veículo para evitar surpresas desagradáveis. Identifique acidentes, roubos e outros problemas ocultos, garantindo uma compra segura e informada.</p>
                 </div>
                 <div id='first_section_search' className="w-100">
-                    <h2 id='title_input_search' className="mb-3">Digite sua placa aqui</h2>
-                    <form id='input_search' onSubmit={handleSubmit} className="d-flex flex-column">
+                    <form id="input_search" onSubmit={handleSubmit} className="input-box">
+                        <i className="uil uil-search" onClick={handleSubmit}></i>
                         <Input
                             type="text"
-                            placeholder="Digite sua placa..."
+                            placeholder="Digite a placa do veículo"
                             value={dataPlaca}
                             onChange={e => setDataPlaca(placaFormater(e.target.value))}
                             className="mb-3"
+                            onKeyDown={handleKeyDown}
                         />
-                        <button
-                            id='btn_search'
-                            type='submit'
-                            className="btn btn-primary d-flex align-items-center"
-                        >
-                            <Search className="me-2" />
+                        <button id="btn_search" type="submit" className="button">
                             Pesquisar
                         </button>
                     </form>
                 </div>
             </div>
 
-            <div id='img_car' className="d-none d-md-block position-relative">
-                <Image className="position-absolute top-50 end-0 translate-middle-y" src="/Car-with-damaged-half-and-repair.png" alt="car" width={600} height={600} />
+            <div id='img_car' className='d-none d-md-block position-relative'>
+                <Image
+                    src='/banner-car-crashed.png'
+                    alt='Carro com informações'
+                    width={600}
+                    height={600}
+                    className='car-image'
+                />
             </div>
-
-            {/* Adicionar o Banner de Anúncios Lateral (opcional) */}
-            {/* <div className='d-none d-lg-block'>
-                <AdsVerticalBanner />
-            </div> */}
         </motion.section>
     );
 };

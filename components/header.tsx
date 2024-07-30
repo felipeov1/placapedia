@@ -1,15 +1,15 @@
 "use client";
 
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import $ from 'jquery'; // Importar jQuery
 import { AppContext } from '@/context/context';
 import { useRouter } from 'next/navigation';
 
 function Header() {
     const router = useRouter();
     const { user, signOut } = useContext(AppContext);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -27,7 +27,6 @@ function Header() {
 
         window.addEventListener('scroll', handleScroll);
 
-        // Cleanup function to remove the event listener
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
@@ -38,49 +37,51 @@ function Header() {
         router.push('/');
     };
 
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+
     return (
         <nav id="navbar" className="navbar navbar-expand-lg navbar-light navbar-transparent fixed-top p-0">
             <div className="container">
-                <Link className="navbar-brand mx-auto" href="/">
-                    <Image src="/logo.svg" alt="Logo" height={45} width={200} />
+                <Link className="navbar-brand" href="/">
+                    <Image src="/logo-placapedia.png" alt="Logo" height={45} width={200} />
                 </Link>
 
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button className="navbar-toggler" type="button" onClick={toggleMenu} aria-controls="navbarNav" aria-expanded={menuOpen} aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
 
-                <div className="collapse navbar-collapse justify-content-lg-center" id="navbarNav">
+                <div className={`collapse navbar-collapse justify-content-between ${menuOpen ? 'show' : ''}`} id="navbarNav">
                     <ul className="navbar-nav">
-                        {user && (
-                            <li className="nav-item">
-                                <Link className="nav-link" href="/home">Minha Conta</Link>
-                            </li>
-                        )}
                         <li className="nav-item">
                             <Link className="nav-link" href="/">Consultar Veículo</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" href="/contact">Contato</Link>
                         </li>
-                        {!user && (
-                            <li className="nav-item">
-                                <Link className="nav-link" href="/login">Login</Link>
-                            </li>
-                        )}
                         {user && (
                             <li className="nav-item">
-                                <span onClick={handleClose} className="nav-link cursor-pointer">Sair</span>
+                                <Link className="nav-link" href="/home">Minha Conta</Link>
                             </li>
                         )}
                     </ul>
-                </div>
-                <div className="btns-acess">
-                    {!user && (
-                        <Link href="/pagina-de-login" className="btn btn-primary" style={{ fontWeight: 500 }}>
-                            <i className="fa-solid fa-user" style={{ fontWeight: 500 }}></i> Fazer Login
-                        </Link>
-                    )}
+                    <div className="btns-acess ms-auto">
+                        {user ? (
+                            <button id='btn-left' className="btn btn-secondary" style={{ fontWeight: 500 }} onClick={handleClose}>
+                                Sair
+                            </button>
+                        ) : (
+                            <>
+                                <Link href="/register" id='btn-register' className="btn btn-secondary" style={{ fontWeight: 500 }}>
+                                    <i className="fa-solid fa-user-plus" style={{ fontWeight: 500 }}></i> Registrar
+                                </Link>
+                                <Link href="/login" id='btn-login' className="btn btn-primary" style={{ fontWeight: 500 }}>
+                                    <i className="fa-solid fa-user" style={{ fontWeight: 500 }}></i> Login
+                                </Link>
+                            </>
+                        )}
+                    </div>
                 </div>
             </div>
         </nav>

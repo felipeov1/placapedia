@@ -1,85 +1,56 @@
 import React from 'react';
-import { NotebookText, ShieldBan, TrafficCone } from 'lucide-react';
-import Image from 'next/image';
-import { motion } from "framer-motion"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Link from 'next/link';
 
-type Props = {
-    variants: {
-        hidden: { y: number, opacity: number },
-        visible: {
-            y: number,
-            opacity: number
-        }
-    }
-};
 
-function Cards() {
-
-    const container = {
-        hidden: { opacity: 1, scale: 0 },
-        visible: {
-            opacity: 1,
-            scale: 1,
-            transition: {
-                delayChildren: 0.3,
-                staggerChildren: 0.2
-            }
-        }
-    };
-
-    const item = {
-        hidden: { y: 20, opacity: 0 },
-        visible: {
-            y: 0,
-            opacity: 1
-        }
-    };
-
+function ImagesSection() {
     return (
-        <motion.div
-            className='md:max-w-[800px] w-full flex items-center justify-center gap-3'
-            variants={container}
-            initial="hidden"
-            animate="visible"
-        >
-            <motion.div className="w-40 h-40 bg-slate-100 p-1 rounded-sm flex flex-col items-center" variants={item}>
-                <div className="relative flex items-center justify-center">
-                    <div className="w-10 h-10 rounded-full bg-slate-300" />
-                    <NotebookText className="w-6 h-6 text-blue-500 absolute" />
+        <section id="images-section-cards" className="mt-1 mb-3">
+            <p id='how-card-section' className="text-center mb-2">COMO CONSULTAR O HISTÓRICO DO VEÍCULO EM APENAS 4 PASSOS</p>
+            <h2 className="main-text-cards text-center mb-4">Tenha o Histórico do Veículo e Evite Problemas Futuros</h2>
+            <div className="cards-container d-flex justify-content-center">
+                <div id='card-container' className="col-md-3 mb-4 d-flex flex-column align-items-center">
+                    <div className="circle-number mb-2">
+                        <span>01</span>
+                    </div>
+                    <div className="image-description">
+                        <p><strong>Cadastre-se</strong></p>
+                        <p>Crie sua conta agora mesmo para ter acesso exclusivo ao histórico completo do veículo.</p>
+                    </div>
                 </div>
-                <h3 className="text-base font-bold text-blue-900 mt-1">Dados cadastrais</h3>
-                <p className="text-xs font-light text-center text-blue-500 mt-1">Dados de cadastro do veículo como Renavam, Chassi, motor, ano, modelo, cor e muito mais.</p>
-            </motion.div>
-
-            <motion.div className="w-40 h-40 bg-slate-100 p-1 rounded-sm flex flex-col items-center" variants={item}>
-                <div className="relative flex items-center justify-center">
-                    <div className="w-10 h-10 rounded-full bg-slate-300" />
-                    <ShieldBan className="w-6 h-6 text-blue-500 absolute" />
+                <div id='card-container' className="col-md-3 mb-4 d-flex flex-column align-items-center">
+                    <div className="circle-number mb-2">
+                        <span>02</span>
+                    </div>
+                    <div className="image-description">
+                        <p><strong>Faça uma Pesquisa Gratuita</strong></p>
+                        <p>Realize uma consulta inicial de forma <strong>totalmente gratuita</strong>. Digite a placa do veículo e <strong>descubra</strong>  informações em segundos.</p>
+                    </div>
                 </div>
-                <h3 className="text-base font-bold text-blue-900 mt-1">Restrições</h3>
-                <p className="text-xs font-light text-center text-blue-500 mt-1">Veja se o carro que você tem interrese tem algum tipo de restrição.</p>
-            </motion.div>
-
-            <motion.div className="w-40 h-40 bg-slate-100 p-1 rounded-sm flex flex-col items-center" variants={item}>
-                <div className="relative flex items-center justify-center">
-                    <div className="w-10 h-10 rounded-full bg-slate-300" />
-                    <TrafficCone className="w-6 h-6 text-blue-500 absolute" />
+                <div id='card-container' className="col-md-3 mb-4 d-flex flex-column align-items-center">
+                    <div className="circle-number mb-2">
+                        <span>03</span>
+                    </div>
+                    <div className="image-description">
+                        <p><strong>Invista na Consulta Detalhada</strong></p>
+                        <p>Escolha o plano ideal e faça o pagamento de forma segura. <strong>Invista</strong> em uma <strong>análise detalhada</strong> e obtenha informações exclusivas e sem estresse no futuro. </p>
+                    </div>
                 </div>
-                <h3 className="text-base font-bold text-blue-900 mt-1">Multa</h3>
-                <p className="text-xs font-light text-center text-blue-500 mt-1">Te oferecemos também a opção de ver se tem algum débito para você não ser pego de surpresa.</p>
-            </motion.div>
-
-            <motion.div className="w-40 h-40 bg-slate-100 p-1 rounded-sm flex flex-col items-center" variants={item}>
-                <div className="relative flex items-center justify-center">
-                    <div className="w-10 h-10 rounded-full bg-slate-300" />
-                    <Image src="/ladrao.svg" alt="ladrão" width={31} height={31} className="absolute" />
+                <div id='card-container' className="col-md-3 mb-4 d-flex flex-column align-items-center">
+                    <div className="circle-number mb-2">
+                        <span>04</span>
+                    </div>
+                    <div className="image-description">
+                        <p><strong>Receba uma Análise Completa</strong></p>
+                        <p>Receba uma análise detalhada do veículo e <strong>evite dores de cabeça</strong> no futuro. Tenha todas as informações necessárias para <strong>decisões seguras</strong> e sem surpresas.</p>
+                    </div>
                 </div>
-                <h3 className="text-base font-bold text-blue-900 mt-1">Furto/Roubo</h3>
-                <p className="text-xs font-light text-center text-blue-500 mt-1">Tenha acesso a informações e descubra se o carro tem algum B.O</p>
-            </motion.div>
-
-        </motion.div>
+            </div>
+            <div className='btn-cta-cards d-flex justify-content-center mt-2'>
+                <Link href="/register" id='btn-cta-card'>Consultar Agora</Link>
+            </div>
+        </section>
     );
-};
+}
 
-export default Cards;
+export default ImagesSection;

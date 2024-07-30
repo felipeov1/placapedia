@@ -1,42 +1,96 @@
+"use client";
+
 import Link from 'next/link';
-import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import Image from 'next/image';
+import React, { useState } from 'react';
 
 function Footer() {
+    const currentYear = new Date().getFullYear();
+
+    const [message, setMessage] = useState<string>(''); // Define o tipo do estado
+
+    const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault(); // Previne o comportamento padrão do formulário
+        const phoneNumber = '5517991486467'; // Número do WhatsApp
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+        window.open(whatsappURL, '_blank');
+    };
+
     return (
-        <div className='w-full h-80 mt-10 bg-blue-500 flex items-center justify-around text-white'>
-            <div className='text-lg font-light max-w-[500px] flex flex-col gap-3'>
-                <p className='text-sm'>Desvende os segredos por trás das placas de veículos!</p>
-                <p className='text-sm'>Nossa missão é ser sua fonte de confiança no mercado automotivo, ajudando você a evitar surpresas ao descobrir se o veículo possui restrições, pendências ou histórico de leilão.</p>
-                <p className='text-sm'>Garantimos que você faça um bom negócio, proporcionando segurança na compra ou venda de um carro com informações completas. Assim, você pode tomar decisões conscientes, proteger seu patrimônio e evitar dores de cabeça no futuro.</p>
-            </div>
-            <div className='flex gap-10 items-start'>
-                <div>
-                    <h2 className='font-semibold text-xl'>Site</h2>
-                    <ul className='flex flex-col gap-3 mt-3'>
-                        <li>
-                            <Link href="/">Home</Link>
-                        </li>
-                        <li>
-                            <Link href="/contact">Contato</Link>
-                        </li>
-                    </ul>
+        <footer className="footer-section mt-4">
+            <div className="container">
+                <div className="footer-content pt-5 pb-5">
+                    <div className="row">
+                        <div className="col-xl-4 col-lg-4 mb-50">
+                            <div className="footer-widget">
+                                <div className="footer-logo">
+                                    <a href="/"><Image src="/lopgo-placapedia-laranja.png" alt="Logo" height={55} width={200} /></a>
+                                </div>
+                                <div className="footer-text">
+                                    <p>Oferecemos um serviço especializado em consulta de placas de veículos. Fornecemos relatórios completos e precisos sobre o histórico e estado dos veículos, garantindo informações confiáveis para que você tome decisões informadas. Nosso sistema é fácil de usar e acessível, com dados atualizados para uma análise detalhada.</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div className="col-xl-4 col-lg-4 col-md-6 mb-30 d-flex justify-content-center">
+                            <div className="footer-widget">
+                                <div className="footer-widget-heading">
+                                    <h3>Acesso Rápidio</h3>
+                                </div>
+                                <ul id='pages-ul'>
+                                    <li><a href="#">Consultar</a></li>
+                                    <li><a href="#">Contato</a></li>
+                                    <li><a href="#">Login</a></li>
+                                    <li><a href="#">Registrar</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="col-xl-4 col-lg-4 col-md-6 mb-50">
+                            <div className="footer-widget">
+                                <div className="footer-widget-heading">
+                                    <h3>Mensagem Rápida</h3>
+                                </div>
+                                <div className="footer-text mb-25">
+                                    <p>Digite suas dúvidas ou solicitações e entraremos em contato rapidamente.</p>
+                                </div>
+                                <div className="subscribe-form">
+                                    <form onSubmit={handleSendMessage}>
+                                        <input
+                                            type="text"
+                                            placeholder="Digite sua mensagem"
+                                            value={message}
+                                            onChange={(e) => setMessage(e.target.value)}
+
+                                        />
+                                        <button><i className="bi bi-send-fill" style={{ fontSize: "20px" }}></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div>
+                                
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <h2 className='font-semibold text-xl'>Planos</h2>
-                    <ul className='flex flex-col gap-3 mt-3'>
-                        <li>
-                            <Link href='/'>Consultar Veículo</Link>
-                        </li>
-                        <li>
-                            <Link href='/'>Consultar Leilão</Link>
-                        </li>
-                        <li className='text-xs text-blue-300'>
-                            <p>by <a className='transition-transform hover:underline' href="https://miqueiasbelfort.netlify.app/">Miqueias Belfort</a></p>
-                        </li>
-                    </ul>
+            </div>
+            <div className="copyright-area">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-xl-6 col-lg-6 text-center text-lg-left">
+                            <div className="copyright-text">
+                                <p>Copyright &copy; {currentYear}, Todos Direitos Reservados. {/* {*<a href="https://codepen.io/anupkumar92/">Anup</a>*} */}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </footer>
+
     );
 };
 
@@ -49,3 +103,4 @@ function Footer() {
 // Tomar decisões conscientes: Proteja seu patrimônio e evite dores de cabeça no futuro.
 
 export default Footer;
+
