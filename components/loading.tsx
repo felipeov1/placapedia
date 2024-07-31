@@ -1,4 +1,3 @@
-// components/Loading.tsx
 import { LoaderCircle } from 'lucide-react';
 import React from 'react';
 

@@ -31,12 +31,14 @@ const cardsData = [
     }
 ];
 
-function AboutSession() {
-    const [selectedCard, setSelectedCard] = useState(null);
 
-    const handleCardClick = (id) => {
+
+function AboutSession() {
+    const [selectedCard, setSelectedCard] = useState<number | null>(null);
+
+    const handleCardClick = (id: number) => {
         if (selectedCard === id) {
-            setSelectedCard(null); // Deselect if already selected
+            setSelectedCard(null); 
         } else {
             setSelectedCard(id);
         }

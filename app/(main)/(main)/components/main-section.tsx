@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useContext, useState } from 'react';
 import Image from 'next/image';
 import { League_Gothic } from "next/font/google";
@@ -20,14 +18,15 @@ function MainSection() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-
+    
         // Regex para validar os dois formatos de placas brasileiras
         const regex = /^[A-Z]{3}\d{4}$|^[A-Z]{3}\d[A-Z]\d{2}$/;
-
+    
         if (!dataPlaca) {
+            console.log('Data Placa is empty');
             return;
         }
-
+    
         if (!regex.test(dataPlaca)) {
             toast({
                 title: 'Formato da placa é inválido',
@@ -35,17 +34,18 @@ function MainSection() {
             });
             return;
         }
-
-        const result = localStorage.getItem('result');
-        setPlaca(dataPlaca);
-
+    
+        // Verifica se está no ambiente de cliente
+        const result = typeof window !== 'undefined' ? localStorage.getItem('result') : null;
+    
         if (result) {
             localStorage.removeItem('result');
         }
-
+    
         if (!user) {
             router.replace('/login');
         } else {
+            console.log('Navigating to /search/' + dataPlaca);
             router.replace(`/search/${dataPlaca}`);
         }
     };

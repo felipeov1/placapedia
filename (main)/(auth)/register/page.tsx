@@ -3,17 +3,19 @@
 import React, { useContext, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
+
 import { createUserWithGoogle } from '@/firebase/services';
 import { AppContext } from '@/context/context';
 import { useRouter } from 'next/navigation';
 import { toast } from '@/components/ui/use-toast';
 
 function RegisterPage() {
+
     const router = useRouter();
     const { signUp, setUser } = useContext(AppContext);
     const [seePassword, setSeePassword] = useState(false);
@@ -25,10 +27,10 @@ function RegisterPage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!name || !email || !password) {
+        if (!name ?? !email ?? !password) {
             toast({
-                title: 'Preencha os dados',
-                description: 'Preencha todos os dados para se cadastrar, nome, email e senha.'
+                title: 'Preecha os dados',
+                description: 'Preencha todos os dados para fazer login, nome, email e senha.'
             });
             return;
         }
@@ -39,7 +41,11 @@ function RegisterPage() {
             });
             return;
         }
-        signUp({ name, email, password });
+        signUp({
+            name,
+            email,
+            password
+        });
         router.replace('/home');
     };
 
@@ -58,15 +64,16 @@ function RegisterPage() {
     };
 
     return (
-        <div className='container w-100 d-flex align-items-center justify-content-center min-vh-100 mt-4'>
-            <div id='containerRegister' className=' w-md-50 p-4 p-md-5 border rounded shadow-sm bg-light'>
-                <div className='text-center mb-4'>
-                    <h1 className='h3 font-weight-bold'>Criar minha conta</h1>
-                    <p className='text-muted'>Digite seus dados para se cadastrar.</p>
+        <div className='w-full mt-5 overflow-y-auto flex items-center justify-center'>
+            <div className='max-w-[90%] md:max-w-[700px]'>
+
+                <div className='text-center'>
+                    <h1 className='text-xl font-bold'>Criar minha conta</h1>
+                    <p className='font-light'>Digite seus dados para se cadastrar</p>
                 </div>
 
-                <form className='d-flex flex-column gap-3' onSubmit={handleSubmit}>
-                    <div>
+                <form className='flex flex-col justify-center gap-5' onSubmit={handleSubmit}>
+                    <div className='mt-5'>
                         <Label htmlFor='name'>Nome</Label>
                         <Input
                             type='text'
@@ -75,10 +82,9 @@ function RegisterPage() {
                             required
                             value={name}
                             onChange={e => setName(e.target.value)}
-                            className='form-control'
                         />
                     </div>
-                    <div>
+                    <div className=''>
                         <Label htmlFor='email'>Email</Label>
                         <Input
                             type='email'
@@ -87,7 +93,6 @@ function RegisterPage() {
                             required
                             value={email}
                             onChange={e => setEmail(e.target.value)}
-                            className='form-control'
                         />
                     </div>
                     <div>
@@ -99,13 +104,7 @@ function RegisterPage() {
                             required
                             value={password}
                             onChange={e => setPassword(e.target.value)}
-                            className='form-control'
                         />
-                        <div className='d-flex justify-content-end mt-1'>
-                            <p onClick={() => setSeePassword(!seePassword)} className='cursor-pointer text-dark'>
-                                {seePassword ? 'Ocultar senha' : 'Ver senha'}
-                            </p>
-                        </div>
                     </div>
                     <div>
                         <Label htmlFor='confirmPassword'>Confirme sua senha</Label>
@@ -116,20 +115,26 @@ function RegisterPage() {
                             required
                             value={confirmPassword}
                             onChange={e => setConfirmPassword(e.target.value)}
-                            className='form-control'
                         />
+                        <div className='flex justify-end'>
+                            <div>
+                                <p onClick={() => setSeePassword(!seePassword)} className='cursor-pointer transition-colors hover:text-blue-400'>{
+                                    seePassword ? 'Ocultar senhas' : 'Ver senhas'
+                                }</p>
+                            </div>
+                        </div>
                     </div>
-                    <Link className='d-block text-center mb-3 text-black' href="/login">Já tenho conta!</Link>
-                    <Button id='btn-enter-members' type='submit' variant="placapedia" className='w-100'>Cadastrar</Button>
+                    <Link className='text-center' href="/login">Já tenho conta!</Link>
+                    <Button type='submit' variant="placapedia" className='w-full'>Cadastrar</Button>
                 </form>
 
-                <div className='d-flex flex-column align-items-center '>
-                    <Separator className='my-3' />
-                    <span className='bg-white px-3 rounded-pill shadow-sm'>Cadastrar com</span>
+                <div className='flex flex-col items-center justify-center'>
+                    <Separator className='mt-8' />
+                    <span className='p-2 bg-white mt-[-20px]'>Cadastrar com</span>
                 </div>
 
-                <div className='d-flex justify-content-center gap-3 mt-4'>
-                    <Button id='btn-google' onClick={handleGoogleLogin} variant="ghost" className='py-3'>
+                <div className='flex items-center justify-center gap-3 mt-4'>
+                    <Button onClick={handleGoogleLogin} variant="ghost" className='py-3'>
                         <Image src="/google.svg" alt="google" width={40} height={40} />
                     </Button>
                     {/* <Button variant="ghost" className='py-3'>
@@ -137,13 +142,10 @@ function RegisterPage() {
                     </Button> */}
                 </div>
 
-                <p className='text-center mt-4 text-muted'>
-                    Ao clicar em continuar, você concorda com nossos <br />
-                    <a href="#" className='text-black'>Termos de Serviço e Política de Privacidade</a>
-                </p>
+                <p className='text-center mt-4 mb-4'>Ao clicar em continuar, você concorda com nossos <br /> <a href="" className='text-blue-400'>Termos de Serviço e Política de Privacidade</a></p>
             </div>
         </div>
     );
-}
+};
 
 export default RegisterPage;

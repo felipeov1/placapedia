@@ -3,6 +3,7 @@ import { Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { motion } from "framer-motion";
+import Image from 'next/image';
 
 function ThirdSection({ prices }: { prices: any }) {
     return (
@@ -71,7 +72,7 @@ function ThirdSection({ prices }: { prices: any }) {
                             <h2 className='card-title' style={{ textTransform: 'uppercase' }}>Consultar leilão
                             </h2>
                             <p>Veja o histórico de leilões do veículo, incluindo datas e detalhes sobre avarias e condições.</p>
-                            <h2 className='text-price' style={{marginTop: "40px"}}>R$ {prices?.api_3 || '--'}</h2>
+                            <h2 className='text-price' style={{ marginTop: "40px" }}>R$ {prices?.api_3 || '--'}</h2>
                             <p className='per-consult'>POR CONSULTA</p>
                             <ul className='list-unstyled mb-5 mt-4'>
 
@@ -103,7 +104,15 @@ function ThirdSection({ prices }: { prices: any }) {
                         </div>
                     </div>
                 </div>
-                <p className='talk-with-us-plan d-flex justify-content-center'>Ficou dom dúvida?&nbsp;<a href="https://api.whatsapp.com/send?phone=5517991486467&text=Ol%C3%A1,%20tudo%20bem?%20Vim%20pelo%20site%20da%20placapedia%20e%20preciso%20de%20ajuda." target="_blank">Fale com a gente</a></p>
+                <p className='talk-with-us-plan d-flex justify-content-center'>Ficou com dúvida?&nbsp;<a href="https://api.whatsapp.com/send?phone=5517991486467&text=Ol%C3%A1,%20tudo%20bem?%20Vim%20pelo%20site%20da%20placapedia%20e%20preciso%20de%20ajuda." target="_blank">Fale com a gente</a></p>
+                <div className='d-flex justify-content-center gap-3'>
+                    <Image src="/visa-logo.svg" alt="cartão visa" width={80} height={80} />
+                    <Image src="/mastercard-logo.svg" alt="cartão mastercard" width={80} height={80} />
+                    <Image src="/amex-logo.svg" alt="cartão american express" width={80} height={80} />
+                    <Image src="/pix-logo.svg" alt="pix" width={90} height={80} />
+                </div>
+                <p className='talk-with-us-plan d-flex justify-content-center'>Para visualizar todas formas de pagamento acesse o carrinho de compras</p>
+
             </div>
             {/* Linha horizontal e avaliações */}
             <div className='container mt-5'>

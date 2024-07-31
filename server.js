@@ -2,7 +2,7 @@ const { createServer } = require('http')
 const { parse } = require('url')
 const next = require('next')
 
-const dev = process.env.NODE_ENV !== 'production'
+const dev = process.env.NODE_ENV !== 'development'
 const hostname = dev ? 'localhost' : 'https://placapedia.com/'
 const port = process.env.port || 3000
 // when using middleware `hostname` and `port` must be provided below
@@ -38,3 +38,4 @@ app.prepare().then(() => {
             console.log(`> Ready on ${hostname}:${port}`)
         })
 })
+

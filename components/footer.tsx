@@ -32,6 +32,7 @@ function Footer() {
                                 <div className="footer-text">
                                     <p>Oferecemos um serviço especializado em consulta de placas de veículos. Fornecemos relatórios completos e precisos sobre o histórico e estado dos veículos, garantindo informações confiáveis para que você tome decisões informadas. Nosso sistema é fácil de usar e acessível, com dados atualizados para uma análise detalhada.</p>
                                 </div>
+                                <div className='text-white'>CNPJ 35635897/0001-04</div>
 
                             </div>
                         </div>
@@ -71,7 +72,7 @@ function Footer() {
                                 </div>
                             </div>
                             <div>
-                                
+
                             </div>
                         </div>
                     </div>

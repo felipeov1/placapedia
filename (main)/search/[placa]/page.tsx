@@ -40,7 +40,6 @@ interface Data {
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
-
 const CarInformations: React.FC = () => {
     const { user } = useContext(AppContext);
     const params = useParams<{ placa: string }>();

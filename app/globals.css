@@ -723,3 +723,39 @@ color: #ff5e14;
 font-size: 14px;
 color: #878787;
 }
+
+
+/* page login and register */
+
+#btn-enter-members{
+  height: 45px;
+  width: fit-content;
+  font-weight: 500;
+  transition: background-color 0.4s ease, filter 0.4s ease;
+  background-color: #e74c17 !important;
+  border: none;
+  border-radius: 10px !important;
+  color: #fff;
+  text-decoration: none;
+  align-items: center;
+  padding: 0 15px;
+  border-radius: 2px;
+}
+
+#btn-enter-members:hover {
+  background-color: #e74c17 !important;
+  filter: brightness(80%);
+}
+
+#btn-google{
+  background-color: white;
+  border: none;
+  border-radius: 40px;
+}
+
+#containerRegister{
+  max-width: 500px !important;
+  height: 830px !important;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
