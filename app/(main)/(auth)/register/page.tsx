@@ -13,6 +13,7 @@ import { AppContext } from '@/context/context';
 import { useRouter } from 'next/navigation';
 import { toast } from '@/components/ui/use-toast';
 
+
 function RegisterPage() {
     const router = useRouter();
     const { signUp, setUser } = useContext(AppContext);
@@ -58,7 +59,7 @@ function RegisterPage() {
     };
 
     return (
-        <div className='container w-100 d-flex align-items-center justify-content-center min-vh-100 mt-4'>
+        <div className='container w-100 d-flex align-items-center justify-content-center min-vh-90 mt-4'>
             <div id='containerRegister' className=' w-md-50 p-4 p-md-5 border rounded shadow-sm bg-light'>
                 <div className='text-center mb-4'>
                     <h1 className='h3 font-weight-bold'>Criar minha conta</h1>

@@ -1,0 +1,13 @@
+{
+    "api_externas": [
+      {
+        "placa": "ABC1234",
+        "formatedRes": {
+          "MARCA": "Toyota",
+          "MODELO": "Corolla",
+          "ano": "2022"
+        }
+      }
+    ]
+  }
+  

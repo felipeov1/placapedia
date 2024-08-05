@@ -1,0 +1,43 @@
+@font-face {
+  font-family: 'CarPlate';
+  src: url('../../../../fonts/FE-FONT.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.numberPlate {
+  font-family: 'CarPlate';
+}
+
+.protectedInfos {
+  height: 300px;
+  width: 80% !important;
+}
+
+.infoBack {
+  background-color: white !important;
+  border-radius: 15px;
+  padding: 10px;
+  display: inline-block; /* Ajusta o tamanho conforme o conteúdo */
+  white-space: nowrap; /* Evita quebra de linha */
+}
+
+.info-box {
+  margin: 10px; /* Espaçamento maior entre as caixas de informação */
+}
+
+.info-title {
+  margin-bottom: 5px;
+  font-size: 15px !important;
+  font-weight: bolder;
+  color: #03045E;
+}
+
+span.text-center {
+  font-size: 12px;
+}
+
+.infosData {
+  font-size: 16px;
+  font-weight: bold;
+}

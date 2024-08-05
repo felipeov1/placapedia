@@ -13,7 +13,7 @@ function LayoutMainPage({ children }: { children: React.ReactNode }) {
             <div className='hidden md:block'>
                 <Footer />
             </div>
-            <Toaster />
+            {/* <Toaster /> */}
         </div>
     );
 };

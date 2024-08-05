@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 
 
 
-function Header() {
+function HeaderSearchPage() {
     const router = useRouter();
     const { user, signOut } = useContext(AppContext);
     const [menuOpen, setMenuOpen] = useState(false);
@@ -44,7 +44,7 @@ function Header() {
     };
 
     return (
-        <nav id="navbar" className="navbar navbar-expand-lg navbar-light navbar-transparent fixed-top p-0">
+        <nav id="navbar" className="navbar navbar-expand-lg navbar-light navbar-transparent static p-0"   style={{boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px'}}>
             <div className="container">
                 <Link className="navbar-brand" href="/">
                     <Image src="/logo-placapedia.png" alt="Logo" height={45} width={200} />
@@ -90,4 +90,4 @@ function Header() {
     );
 }
 
-export default Header;
+export default HeaderSearchPage;

@@ -22,33 +22,49 @@ function Contact() {
                 ease: [0, 0.71, 0.2, 1.01]
             }}
         >
-            <div className='w-full h-40 bg-blue-500 flex items-center justify-center'>
-                <h1 className='text-3xl text-white font-bold'>Entre em contato</h1>
+            <div className='title-contact-page d-flex justify-content-center mt-5'>
+                <h1 className='text-center'>Tem dúvidas? Entre em contato para que possamos ajudar você.</h1>
             </div>
-            <div className='flex flex-col gap-5 md:flex-row md:gap-0 items-center justify-around px-5 mt-5'>
-                <div className='text-center'>
-                    <h2 className='text-3xl font-bold text-blue-500'>Email</h2>
-                    <p className='text-xl font-bold mt-3'>placapedia@placapedia.com</p>
-                </div>
-                <div className='text-center'>
-                    <h2 className='text-3xl font-bold text-blue-500'>Telefone para contao</h2>
-                    <p className='text-xl font-bold mt-3'>(17) 99148-6467</p>
-                </div>
-                <div className='text-center'>
-                    <h2 className='text-3xl font-bold text-blue-500 mb-3'>WhatsApp</h2>
-                    <a href="https://api.whatsapp.com/send?phone=5517991486467&text=Ol%C3%A1,%20tudo%20bem?%20Vim%20pelo%20site%20da%20placapedia." className='text-xl font-bold text-blue-300'>(17) 99148-6467</a>
+            <div className='px-5 mt-5 mb-5'>
+                <div className='contact-grid d-flex gap-5 justify-content-center'>
+                    <a href="https://wa.me/5517991486467" target="_blank" rel="noopener noreferrer" className='contact-link'>
+                        <div className='contact-box text-center'>
+                            <i className="icon-mode bi bi-whatsapp"></i>
+                            <div className='text-title'>WhatsApp</div>
+                            <div className='text'>Entre em contato pelo WhatsApp</div>
+                            <i className="arrow bi bi-arrow-right"></i>
+                        </div>
+                    </a>
+                    <a href="tel:+5517991486467" target="_blank" rel="noopener noreferrer" className='contact-link'>
+                        <div className='contact-box text-center'>
+                            <i className="icon-mode bi bi-phone"></i>
+                            <div className='text-title'>Ligar</div>
+                            <div className='text'>Ligue para nós</div>
+                            <i className="arrow bi bi-arrow-right"></i>
+                        </div>
+                    </a>
+                    <a href="mailto:placapedia@placapedia.com" target="_blank" rel="noopener noreferrer" className='contact-link'>
+                        <div className='contact-box text-center'>
+                            <i className="icon-mode bi bi-envelope"></i>
+                            <div className='text-title'>Email</div>
+                            <div className='text'>Envie um e-mail</div>
+                            <i className="arrow bi bi-arrow-right"></i>
+                        </div>
+                    </a>
                 </div>
             </div>
-            <div className='px-5 mt-5 flex flex-col md:flex-row items-center justify-around'>
-                <Image src="/logo.png" alt='placapedia' width={300} height={300} />
-                <div className='max-w-[500px] flex flex-col gap-3 font-light pb-5'>
-                    <p>Agradecemos sinceramente por utilizar nosso site de consulta de informações de veículos. Sua confiança em nossos serviços é muito importante para nós. Estamos comprometidos em fornecer dados precisos e atualizados para ajudar você a tomar decisões informadas sobre veículos.</p>
-                    <p>Se você tiver qualquer dúvida ou sugestão, por favor, entre em contato conosco. Estamos sempre aqui para ajudar.</p>
-                    <p>Muito obrigado!</p>
+            <div className='d-flex justify-content-center mt-5 mb-5'>
+                <div className='d-flex justify-content-center' style={{ width: '65%' }}>
+                    <div className='text-center'>
+                        <h2>Agradecemos a sua visita!</h2>
+                        <p>Obrigado por utilizar o nosso site de consulta de informações sobre veículos. Sua confiança em nossos serviços é fundamental para nós. Estamos dedicados a fornecer dados precisos e atualizados, ajudando você a tomar decisões informadas sobre a compra, venda ou manutenção do seu veículo.</p>
+                        <p>Se tiver dúvidas, sugestões ou precisar de assistência adicional, nossa equipe está à disposição para ajudar. Entre em contato conosco através de nossos canais de atendimento e receberá suporte personalizado e eficiente.</p>
+                        <p><strong>Muito obrigado por escolher nossos serviços!</strong></p>
+                    </div>
                 </div>
             </div>
         </motion.div>
     );
-};
+}
 
 export default Contact;

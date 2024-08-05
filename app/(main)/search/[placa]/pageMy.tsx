@@ -24,6 +24,9 @@ import { toast } from '@/components/ui/use-toast';
 import Print from '@/components/print';
 import { cn } from '@/lib/utils';
 import { getAuthToken } from '@/firebase/services';
+import Image from 'next/image';
+import './search-page.css';
+
 
 interface PaymentInfo {
     wasPay: boolean;
@@ -37,6 +40,8 @@ interface Data {
     MODELO: string;
     ano: string;
 };
+
+
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
@@ -152,7 +157,7 @@ const CarInformations: React.FC = () => {
             try {
                 const token = await getAuthToken();
                 if (token) {
-                    const res = await axios.post(`${process.env.NEXT_PUBLIC_URL_BASE}/api/api_externas/main`, {
+                    const res = await axios.post('http://localhost:5000/api_externas', {
                         placa: params.placa
                     }, {
                         headers: {
@@ -187,58 +192,88 @@ const CarInformations: React.FC = () => {
     return (
         <Dialog open={modal} onOpenChange={(open) => handleCloseModal(open)}>
             <Print placa={params.placa} notFound={notFound} seeInfo={seeInfo?.wasPay ? true : false}>
-                <div className='w-full min-h-screen p-2 md:p-5'>
-                    <div className='flex flex-col items-center justify-center gap-5'>
-                        <div className='flex items-center gap-4'>
-                            <h2 className={`text-xl ${notFound ? 'text-rose-500' : 'text-[#138a01]'}`}>
-                                {notFound ? 'Não achamos um veículo com essa placa' : 'Dados encontrados!'}
-                            </h2>
-                            <ListChecks className={`${notFound ? 'text-rose-500' : 'text-[#138a01]'} text-2xl`} />
-                        </div>
-                        <h1 className={cn('text-center text-3xl font-bold bg-blue-500 p-2 rounded-md text-white', notFound && 'bg-rose-500')}>{params.placa}</h1>
-                        {notFound ? (
-                            <p className='text-xl text-center font-semibold text-rose-500'>
-                                A Placa <span className='text-[#138a01]'>Pedia</span> não encontrou informações sobre o veículo...
-                            </p>
-                        ) : (
-                            <p className='text-xl text-center font-semibold text-blue-500'>
-                                A Placa <span className='text-[#138a01]'>Pedia</span> encontrou informações sobre o veículo...
-                            </p>
-                        )}
+                <div className='container-fluid'>
+                    <div className="text-center mb-4">
+                        <h2 className={`text-xl ${notFound ? 'text-danger' : 'text-success'}`}>
+                            {notFound ? 'Não achamos um veículo com essa placa' : 'Dados encontrados!'}
+                        </h2>
                     </div>
-                    <div className='w-full flex flex-col items-center justify-center mt-5'>
-                        {data && (
-                            <div className='w-full flex items-center justify-center gap-3 mb-4 flex-col md:flex-row'>
-                                <InfoCard notFound={notFound} title="Marca" value={data.MARCA} />
-                                <InfoCard notFound={notFound} title="Modelo" value={data.MODELO} />
-                                <InfoCard notFound={notFound} title="Ano de fabricação" value={data.ano} />
+                    <div className="text-center mb-4">
+                        <p className={`text-xl font-semibold ${notFound ? 'text-danger' : 'text-primary'}`}>
+                            A Placa <span className="text-success">Pedia</span> {notFound ? 'não encontrou informações sobre o veículo...' : 'encontrou informações sobre o veículo...'}
+                        </p>
+                    </div>
+
+                    <div className="container-fluid mt-5">
+                        <div className="row justify-content-center">
+                            <div className="col-12 col-md-8">
+                                <div className={`d-flex ${notFound ? 'bg-danger' : 'bg-light'} p-4 rounded justify-content-around`}>
+                                    {data && (
+                                        <div className="d-flex align-items-center">
+                                            <div className="position-relative" style={{ width: '350px', height: '100px' }}>
+                                                <Image
+                                                    src="/blank-license-plate.png"
+                                                    alt="Placa"
+                                                    style={{ width: '100%', height: '100%', objectFit: 'contain', zIndex: 1 }}
+                                                    width={350}
+                                                    height={100}
+                                                />
+                                                <h1 className="numberPlate position-absolute top-50 start-50 translate-middle text-3xl font-bold text-dark mt-2" style={{ zIndex: 2 }}>
+                                                    {params.placa}
+                                                </h1>
+                                            </div>
+                                        </div>
+                                    )}
+                                    <div className="align-content-center mt-2">
+                                        <div className="d-flex flex-row gap-3">
+                                            <div className="info-box">
+                                                <h5 className="info-title">Marca</h5>
+                                                <div className='infoBack'>
+                                                    <InfoCard notFound={notFound} value={data.MARCA} />
+                                                </div>
+                                            </div>
+                                            <div className="info-box">
+                                                <h5 className="info-title">Modelo</h5>
+                                                <div className='infoBack'>
+                                                    <InfoCard notFound={notFound} value={data.MODELO} />
+                                                </div>
+                                            </div>
+                                            <div className="info-box">
+                                                <h5 className="info-title">Ano de fabricação</h5>
+                                                <div className='infoBack'>
+                                                    <InfoCard notFound={notFound} value={data.ano} />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        )}
-                        {!seeInfo ? (
-                            <ProtectedInfoCard
-                                isHovered={isHovered}
-                                setIsHovered={setIsHovered}
-                                notFound={notFound}
-                            />
-                        ) : (
-                            <>
-                                {
-                                    seeInfo?.wasPay && (
-                                        <>
-                                            {Number(seeInfo.api) === 1 && (
-                                                <Api_1_Informations placa={params.placa} />
-                                            )}
-                                            {Number(seeInfo.api) === 2 && (
-                                                <Api2Informations placa={params.placa} />
-                                            )}
-                                            {Number(seeInfo.api) === 3 && (
-                                                <LeilaoInformations placa={params.placa} />
-                                            )}
-                                        </>
-                                    )
-                                }
-                            </>
-                        )}
+                            <div className="row justify-content-center mt-4">
+                                {!seeInfo ? (
+                                    <ProtectedInfoCard
+                                        isHovered={isHovered}
+                                        setIsHovered={setIsHovered}
+                                        notFound={notFound}
+                                    />
+                                ) : (
+                                    <div className="col-12 mb-4">
+                                        {seeInfo?.wasPay && (
+                                            <>
+                                                {Number(seeInfo.api) === 1 && (
+                                                    <Api_1_Informations placa={params.placa} />
+                                                )}
+                                                {Number(seeInfo.api) === 2 && (
+                                                    <Api2Informations placa={params.placa} />
+                                                )}
+                                                {Number(seeInfo.api) === 3 && (
+                                                    <LeilaoInformations placa={params.placa} />
+                                                )}
+                                            </>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </Print>
@@ -253,16 +288,13 @@ const CarInformations: React.FC = () => {
 };
 
 interface InfoCardProps {
-    title: string;
     value: string;
     notFound: boolean
 }
-const InfoCard: React.FC<InfoCardProps> = ({ title, value, notFound }) => ( // Componente de informaçõa principais
-    <span className={cn('text-center p-4 rounded-md bg-blue-500 text-white font-bold text-xl',
-        notFound && "bg-rose-500"
-    )}>
-        <h1>{title}: <span>{notFound ? '---' : value}</span></h1>
-    </span>
+const InfoCard: React.FC<InfoCardProps> = ({ value, notFound }) => (
+    <div className={` text-center rounded-md ${notFound ? 'bg-rose-500' : 'bg-blue-500'} text-dark font-bold p-2`}>
+        <h1><span className='infosData'>{notFound ? '---' : value}</span></h1>
+    </div>
 );
 
 interface ProtectedInfoCardProps {
@@ -270,14 +302,14 @@ interface ProtectedInfoCardProps {
     setIsHovered: React.Dispatch<React.SetStateAction<boolean>>;
     notFound: boolean
 };
-const ProtectedInfoCard: React.FC<ProtectedInfoCardProps> = ({ isHovered, setIsHovered, notFound }) => ( // Bloqueador para não ver as informação sem pagar
-    <div className='w-[80%] h-[300px] flex items-center bg-[url("/protected_bg.svg")] border-2 justify-center bg-cover rounded shadow-md'>
+const ProtectedInfoCard: React.FC<ProtectedInfoCardProps> = ({ isHovered, setIsHovered, notFound }) => (
+    <div className="protectedInfos d-flex align-items-center bg-cover border rounded shadow-md justify-content-center" style={{ backgroundImage: 'url("/protected_bg.svg")' }}>
         <DialogTrigger
-            className={cn('flex max-w-[90%] z-50 items-center cursor-pointer gap-3 p-3 md:px-10 md:py-7 transition-transform rounded-md text-white bg-blue-500 hover:bg-blue-600 hover:scale-125', notFound && 'bg-rose-500 hover:bg-rose-700')}
+            className={`d-flex max-w-90 z-50 align-items-center cursor-pointer gap-3 p-3 md-px-10 md-py-7 transition-transform rounded text-white ${notFound ? 'bg-danger hover-bg-danger-dark' : 'bg-primary hover-bg-primary-dark'} ${!notFound && 'hover-scale-125'}`}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <div className='hidden md:block'>
+            <div className="d-none d-md-block">
                 {isHovered ? <LockKeyholeOpen /> : <LockKeyhole />}
             </div>
             {notFound ? 'Não há dados!' : 'Liberar informações do veículo'}

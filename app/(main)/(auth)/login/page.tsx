@@ -4,29 +4,28 @@ import React, { FormEvent, useState, useContext, useEffect } from 'react';
 import { AppContext } from '@/context/context';
 import Image from 'next/image';
 import Link from 'next/link';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { useRouter } from 'next/navigation';
 import { createUserWithGoogle } from '@/firebase/services';
-import { toast } from '@/components/ui/use-toast';
 
 function LoginPage() {
     const router = useRouter();
-    const { signIn, placa, user, setUser } = useContext(AppContext);
+    const { signIn, user, setUser } = useContext(AppContext);
     const [seePassword, setSeePassword] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [alertMessage, setAlertMessage] = useState('');
+    const [showAlert, setShowAlert] = useState(false);
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         if (!email || !password) {
-            toast({
-                title: 'Preencha os dados',
-                description: 'Preencha todos os dados para fazer login, email e senha.'
-            });
+            setAlertMessage('Preencha todos os dados para fazer login, email e senha.');
+            setShowAlert(true);
+            setTimeout(() => setShowAlert(false), 3000);
             return;
         }
         signIn({ email, password });
@@ -37,10 +36,9 @@ function LoginPage() {
         const res = await createUserWithGoogle();
 
         if (!res) {
-            toast({
-                title: 'Erro ao tentar fazer login!',
-                description: 'Desculpe, houve um erro, tente novamente mais tarde.'
-            });
+            setAlertMessage('Erro ao tentar fazer login! Desculpe, houve um erro, tente novamente mais tarde.');
+            setShowAlert(true);
+            setTimeout(() => setShowAlert(false), 3000);
             return;
         }
 
@@ -56,7 +54,12 @@ function LoginPage() {
     }, [user, router]);
 
     return (
-        <div className=' d-flex align-items-center justify-content-center min-vh-100 mt-4'>
+        <div className='d-flex align-items-center justify-content-center min-vh-90 mt-4'>
+            {showAlert && (
+                <div className="alert alert-danger position-fixed bottom-0 end-0 m-3" role="alert" style={{ zIndex: 1050 }}>
+                    {alertMessage}
+                </div>
+            )}
             <div className='w-80 w-md-50 p-4 p-md-5 border rounded shadow-sm bg-light'>
                 <div className='text-center mb-5'>
                     <h1 className='h3 font-weight-bold'>Acessar conta</h1>
@@ -106,9 +109,6 @@ function LoginPage() {
                     <Button id='btn-google' onClick={handleGoogleLogin} variant="ghost" className='py-3'>
                         <Image src="/google.svg" alt="google" width={40} height={40} />
                     </Button>
-                    {/* <Button variant="ghost" className='py-3'>
-                        <Image src="/facebook.svg" alt="facebook" width={40} height={40} />
-                    </Button> */}
                 </div>
 
                 <p className='text-center mt-4 text-muted'>

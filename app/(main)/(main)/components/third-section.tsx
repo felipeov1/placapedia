@@ -57,6 +57,7 @@ function ThirdSection({ prices }: { prices: any }) {
                                 </li>
                             </ul>
                         </div>
+                        <a href="" className='text-center mb-2'>Ver exemplo de conuslta</a>
                         <div className='text-center'>
                             <Button variant="placapedia" id='btn-buy-plan'>
                                 <a href="#main_section" className='text-decoration-none'>Adquirir Agora</a>
@@ -74,7 +75,7 @@ function ThirdSection({ prices }: { prices: any }) {
                             <p>Veja o histórico de leilões do veículo, incluindo datas e detalhes sobre avarias e condições.</p>
                             <h2 className='text-price' style={{ marginTop: "40px" }}>R$ {prices?.api_3 || '--'}</h2>
                             <p className='per-consult'>POR CONSULTA</p>
-                            <ul className='list-unstyled mb-5 mt-4'>
+                            <ul className='list-unstyled mb-5 mt-5'>
 
                                 <li className='d-flex align-items-center justify-content-center mb-2'>
                                     <Check className='text-success me-2' /> Leiloeiro
@@ -97,6 +98,7 @@ function ThirdSection({ prices }: { prices: any }) {
 
                             </ul>
                         </div>
+                        <a href=""  className='text-center mb-2'>Ver exemplo de conuslta</a>
                         <div className='text-center'>
                             <Button variant="placapedia" id='btn-buy-plan'>
                                 <a href="#main_section" className='text-decoration-none'>Adquirir Agora</a>
@@ -122,7 +124,7 @@ function ThirdSection({ prices }: { prices: any }) {
                 </div>
 
                 {/* Avaliações */}
-                <div className='d-flex flex-row justify-content-between align-items-start mt-4'>
+                <div className='reviews-card d-flex flex-row justify-content-between align-items-start mt-4'>
                     {[{
                         comment: '"Ótimo serviço! Relatórios rápidos e precisos, ajudaram muito na compra do meu carro."',
                         person: '— Carlos M.'

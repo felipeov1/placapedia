@@ -34,7 +34,7 @@ export default function RootLayout({
       <Head>
         <meta name="google-site-verification" content="UVG3ZFL2Z1ANRj0rgv_ZSit8kwRBfa1DKUTAJ621Mes" />
         <link rel="icon" href="/favicon.ico" />
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
       </Head>
 
       {/* <head>
@@ -49,7 +49,7 @@ export default function RootLayout({
         <AppProvider>
           {children}
         </AppProvider>
-        <Toaster />
+        {/* <Toaster /> */}
       </body>
     </html>
   );

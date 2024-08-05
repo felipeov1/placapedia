@@ -26,17 +26,19 @@ function Footer() {
                     <div className="row">
                         <div className="col-xl-4 col-lg-4 mb-50">
                             <div className="footer-widget">
+
                                 <div className="footer-logo">
                                     <a href="/"><Image src="/lopgo-placapedia-laranja.png" alt="Logo" height={55} width={200} /></a>
                                 </div>
+                                <div className='text-white'>CNPJ 35635897/0001-04</div>
+
                                 <div className="footer-text">
                                     <p>Oferecemos um serviço especializado em consulta de placas de veículos. Fornecemos relatórios completos e precisos sobre o histórico e estado dos veículos, garantindo informações confiáveis para que você tome decisões informadas. Nosso sistema é fácil de usar e acessível, com dados atualizados para uma análise detalhada.</p>
                                 </div>
-                                <div className='text-white'>CNPJ 35635897/0001-04</div>
 
                             </div>
                         </div>
-                        <div className="col-xl-4 col-lg-4 col-md-6 mb-30 d-flex justify-content-center">
+                        <div id="fast-acess" className="col-xl-4 col-lg-4 col-md-6 mb-30 d-flex justify-content-center">
                             <div className="footer-widget">
                                 <div className="footer-widget-heading">
                                     <h3>Acesso Rápidio</h3>

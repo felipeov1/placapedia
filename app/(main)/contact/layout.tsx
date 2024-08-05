@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import React from 'react';
-import Header from '@/components/header';
+import HeaderSearchPage from '@/components/headerSearchPage';
 import Footer from '@/components/footer';
 
 export const metadata: Metadata = {
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 function LayoutContact({ children }: { children: React.ReactNode }) {
     return (
         <div>
-            <Header />
+            <HeaderSearchPage />
             <div className='w-full h-screen'>
                 {children}
             </div>

@@ -1,13 +1,16 @@
 import React from 'react';
-import Header from '@/components/header';
-import { Toaster } from '@/components/ui/toaster';
+import HeaderSearchPage from '@/components/headerSearchPage';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../../globals.css'; 
+
+
 
 function AuthLayout({ children }: { children: React.ReactNode }) {
     return (
         <div>
-            <Header />
+            <HeaderSearchPage />
             {children}
-            <Toaster />
+            {/* <Toaster /> */}
         </div>
     );
 };
