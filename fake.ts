@@ -207,3 +207,5 @@ export const fakeMainAPICalled = {
     MODELO: '',
     ano: ''
 };
+
+export default fakeAPICalled_2;

@@ -46,7 +46,7 @@ function Print({ children, placa, notFound, seeInfo }: Props) {
             <div className='mt-5 flex w-full justify-between px-10 items-center'>
                 {seeLogo && (
                     <div className='flex items-center gap-2'>
-                        <Image src="/logo.png" alt='logo' width={100} height={100} />
+                        <Image src="/logo.svg" alt='logo' width={100} height={100} />
                         <div>
                             <p>www.placapedia.com</p>
                             <p>{formatedDate()}</p>

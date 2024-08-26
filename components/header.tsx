@@ -47,7 +47,7 @@ function Header() {
         <nav id="navbar" className="navbar navbar-expand-lg navbar-light navbar-transparent fixed-top p-0">
             <div className="container">
                 <Link className="navbar-brand" href="/">
-                    <Image src="/logo-placapedia.png" alt="Logo" height={45} width={200} />
+                    <Image src="/logo-placapedia.webp" alt="Logo" height={45} width={200} />
                 </Link>
 
                 <button className="navbar-toggler" type="button" onClick={toggleMenu} aria-controls="navbarNav" aria-expanded={menuOpen} aria-label="Toggle navigation">
@@ -63,7 +63,7 @@ function Header() {
                             <Link className="nav-link" href="/contact">Contato</Link>
                         </li>
                         {user && (
-                            <li className="nav-item">
+                            <li className="nav-item item-my-acount">
                                 <Link className="nav-link" href="/home">Minha Conta</Link>
                             </li>
                         )}

@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { AppContext } from '@/context/context';
 import { useRouter } from 'next/navigation';
-
+import '../app/globals.css'
 
 
 function HeaderSearchPage() {
@@ -47,7 +47,7 @@ function HeaderSearchPage() {
         <nav id="navbar" className="navbar navbar-expand-lg navbar-light navbar-transparent static p-0"   style={{boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px'}}>
             <div className="container">
                 <Link className="navbar-brand" href="/">
-                    <Image src="/logo-placapedia.png" alt="Logo" height={45} width={200} />
+                    <Image src="/logo-placapedia.webp" alt="Logo" height={45} width={200} />
                 </Link>
 
                 <button className="navbar-toggler" type="button" onClick={toggleMenu} aria-controls="navbarNav" aria-expanded={menuOpen} aria-label="Toggle navigation">

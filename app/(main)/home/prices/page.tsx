@@ -9,7 +9,6 @@ import { Label } from '@/components/ui/label';
 import { Timestamp } from 'firebase/firestore';
 import { AppContext } from '@/context/context';
 import { getUserByIDInDatabase, updatePricesInDatabase, getPricesInDatabase } from '@/firebase/services';
-import { toast } from '@/components/ui/use-toast';
 import Loading from '@/components/loading';
 import { useRouter } from 'next/navigation';
 
@@ -37,6 +36,9 @@ function Prices() {
     const [search_03Old, setSearch_03Old] = useState("");
     const [search_03, setSearch_03] = useState("");
 
+    const [alertMessage, setAlertMessage] = useState('');
+    const [showAlert, setShowAlert] = useState(false);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const obj = {
@@ -49,15 +51,13 @@ function Prices() {
         };
         try {
             await updatePricesInDatabase('txhDtXbyGm5o1k5S2TLO', obj);
-            toast({
-                title: 'Valores editados com sucesso',
-                description: 'Verifique os novos valores na pagina principal'
-            });
+            setAlertMessage('Valores editados com sucesso. Verifique os novos valores na página principal.');
+            setShowAlert(true);
+            setTimeout(() => setShowAlert(false), 3000);
         } catch (error) {
-            toast({
-                title: 'Erro ao tentar editar preços',
-                description: 'Desculpe, houve um erro, tente mais tarde, se não conseguir, edite diretamento no banco de dados'
-            });
+            setAlertMessage('Erro ao tentar editar preços. Desculpe, houve um erro. Tente mais tarde, se não conseguir, edite diretamente no banco de dados.');
+            setShowAlert(true);
+            setTimeout(() => setShowAlert(false), 3000);
         }
     };
 
@@ -67,19 +67,16 @@ function Prices() {
                 const res = await getUserByIDInDatabase(user);
 
                 if (!res || !res.userId) {
-                    toast({
-                        title: 'Ops! Houve um erro.',
-                        description: 'Desculpe houve um erro ao tentar acessar seu usuário, tente mais tarde!'
-                    });
+                    setAlertMessage('Desculpe, houve um erro ao tentar acessar seu usuário. Tente mais tarde!');
+                    setShowAlert(true);
+                    setTimeout(() => setShowAlert(false), 3000);
                     return;
                 };
 
                 const pricesValues = await getPricesInDatabase('txhDtXbyGm5o1k5S2TLO');
-                setSearch_01Old(pricesValues.label_api_1);
                 setSearch_02Old(pricesValues.label_api_2);
                 setSearch_03Old(pricesValues.label_api_3);
 
-                setSearch_01(pricesValues.api_1);
                 setSearch_02(pricesValues.api_2);
                 setSearch_03(pricesValues.api_3);
 
@@ -93,8 +90,11 @@ function Prices() {
 
     if (!userData) {
         return (
-            <Loading />
-        )
+            <div className='text-center mt-5'>
+                <div className='spinner-border' role='status'></div>
+                <p className='visually-hidden text-dark'>Carregando...</p>
+            </div>
+        );
     };
 
     if (userData.email !== 'admin_placapedia@placapedia.com') {
@@ -102,45 +102,53 @@ function Prices() {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <h1 className='text-2xl font-bold'>Mudar Preço das consultas</h1>
-                <p className='max-w-[500px] text-sm mb-5'>Lembre-se de sempre colocar 00 nos valores mesmo sendo um valor inteiro, ex: R$ 100,00 <br /> <span className='text-red-500'>Atenção: Não coloque nada além de números</span></p>
-                {/* <div className='flex items-center gap-5'>
-                    <div>
-                        <Label htmlFor='1_old'>Consulta 1.0 Valor Antigo</Label>
-                        <Input type='text' placeholder='3,50' id='1_old' value={search_01Old} onChange={e => setSearch_01Old(e.target.value)} />
+        <div className='flex flex-col items-center justify-center min-h-screen p-4'>
+            <div className='w-full max-w-4xl p-6 bg-white rounded-lg'>
+                <form onSubmit={handleSubmit} className='flex flex-col items-center'>
+                    <h1 className='text-2xl font-bold mb-4 text-center'>Mudar Preço das Consultas</h1>
+                    <p className='text-sm mb-5 text-center'>Lembre-se de sempre colocar 00 nos valores mesmo sendo um valor inteiro, ex: R$ 100,00 <br /> <span className='text-danger'>Atenção: Não coloque nada além de números</span></p>
+
+                    <div className="container text-center">
+                        <div className="row row-cols-1 row-cols-md-2 g-4">
+                            <div className="col">
+                                <div className="mb-3">
+                                    <Label htmlFor='2_old' className="form-label">Consulta 2.0 Valor Antigo</Label>
+                                    <Input type='text' className="form-control" placeholder='3,50' id='2_old' value={search_02Old} onChange={e => setSearch_02Old(e.target.value)} />
+                                </div>
+                            </div>
+                            <div className="col">
+                                <div className="mb-3">
+                                    <Label htmlFor='1' className="form-label">Consulta 2.0</Label>
+                                    <Input type='text' className="form-control" placeholder='3,50' id='1' value={search_02} onChange={e => setSearch_02(e.target.value)} />
+                                </div>
+                            </div>
+                            <div className="col">
+                                <div className="mb-3">
+                                    <Label htmlFor='3_old' className="form-label">Consulta Leilão Valor Antigo</Label>
+                                    <Input type='text' className="form-control" placeholder='3,50' id='3_old' value={search_03Old} onChange={e => setSearch_03Old(e.target.value)} />
+                                </div>
+                            </div>
+                            <div className="col">
+                                <div className="mb-3">
+                                    <Label htmlFor='3' className="form-label">Consulta Leilão</Label>
+                                    <Input type='text' className="form-control" placeholder='3,50' id='3' value={search_03} onChange={e => setSearch_03(e.target.value)} />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className='mt-5 d-flex justify-content-end gap-3'>
+                            <Button type='button' onClick={() => router.replace('/home')} className="btn btn-return">Voltar</Button>
+                            <Button variant="placapedia" type='submit' className="btn btn-edit">Editar</Button>
+                        </div>
                     </div>
-                    <div>
-                        <Label htmlFor='1'>Consulta 1.0</Label>
-                        <Input type='text' placeholder='3,50' id='1' value={search_01} onChange={e => setSearch_01(e.target.value)} />
-                    </div>
-                </div> */}
-                <div className='flex items-center gap-5'>
-                    <div>
-                        <Label htmlFor='2_old'>Consulta 2.0 Valor Antigo</Label>
-                        <Input type='text' placeholder='3,50' id='2_old' value={search_02Old} onChange={e => setSearch_02Old(e.target.value)} />
-                    </div>
-                    <div>
-                        <Label htmlFor='1'>Consulta 2.0</Label>
-                        <Input type='text' placeholder='3,50' id='1' value={search_02} onChange={e => setSearch_02(e.target.value)} />
-                    </div>
+                </form>
+            </div>
+
+            {showAlert && (
+                <div className="alert alert-danger fixed bottom-0 end-0 m-3" role="alert">
+                    {alertMessage}
                 </div>
-                <div className='flex items-center gap-5'>
-                    <div>
-                        <Label htmlFor='3_old'>Consulta Leilão Valor Antigo</Label>
-                        <Input type='text' placeholder='3,50' id='3_old' value={search_03Old} onChange={e => setSearch_03Old(e.target.value)} />
-                    </div>
-                    <div>
-                        <Label htmlFor='3'>Consulta Leilão</Label>
-                        <Input type='text' placeholder='3,50' id='3' value={search_03} onChange={e => setSearch_03(e.target.value)} />
-                    </div>
-                </div>
-                <div className='mt-5 flex justify-end gap-3'>
-                    <Button type='button' onClick={() => router.replace('/home')} variant="destructive">Voltar</Button>
-                    <Button variant="placapedia" type='submit'>Editar</Button>
-                </div>
-            </form>
+            )}
         </div>
     );
 };

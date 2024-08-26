@@ -18,8 +18,6 @@ interface UserData {
 }
 
 interface Prices {
-    label_api_1: string;
-    api_1: string;
     label_api_2: string;
     api_2: string;
     label_api_3: string;
@@ -39,8 +37,6 @@ interface AuthContext {
 }
 
 const objPrice = {
-    label_api_1: '10,97',
-    api_1: '3,50',
     label_api_2: '16,90',
     api_2: '7,47',
     label_api_3: '32,20',

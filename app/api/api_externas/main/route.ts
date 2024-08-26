@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     try {
         const anyCarRes = await axios.post('https://api-v2.anycar.com.br/integracao/consultar', {
             apiKey: process.env.NEXT_PUBLIC_TOKEN_2,
-            tipo: 'agregados-basica',
+            tipo: 'agregados-propria',
             placa: body.placa
         });
 

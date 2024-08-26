@@ -18,6 +18,8 @@ function RegisterPage() {
     const router = useRouter();
     const { signUp, setUser } = useContext(AppContext);
     const [seePassword, setSeePassword] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -27,17 +29,15 @@ function RegisterPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!name || !email || !password) {
-            toast({
-                title: 'Preencha os dados',
-                description: 'Preencha todos os dados para se cadastrar, nome, email e senha.'
-            });
+            setAlertMessage('Preencha todos os dados para se cadastrar: nome, email e senha.');
+            setShowAlert(true);
+            setTimeout(() => setShowAlert(false), 3000);
             return;
         }
         if (password !== confirmPassword) {
-            toast({
-                title: 'Senhas incorretas!',
-                description: 'As senhas não são iguais.'
-            });
+            setAlertMessage('As senhas não são iguais.');
+            setShowAlert(true);
+            setTimeout(() => setShowAlert(false), 3000);
             return;
         }
         signUp({ name, email, password });
@@ -47,10 +47,9 @@ function RegisterPage() {
     const handleGoogleLogin = async () => {
         const res = await createUserWithGoogle();
         if (!res) {
-            toast({
-                title: 'Erro ao tentar fazer login!',
-                description: 'Desculpe, houve um erro, tente novamente mais tarde.'
-            });
+            setAlertMessage('Erro ao tentar fazer login! Tente novamente mais tarde.');
+            setShowAlert(true);
+            setTimeout(() => setShowAlert(false), 3000);
             return;
         }
         localStorage.setItem("user", res);
@@ -61,6 +60,11 @@ function RegisterPage() {
     return (
         <div className='container w-100 d-flex align-items-center justify-content-center min-vh-90 mt-4'>
             <div id='containerRegister' className=' w-md-50 p-4 p-md-5 border rounded shadow-sm bg-light'>
+                {showAlert && (
+                    <div className="alert alert-danger position-fixed bottom-0 end-0 m-3" role="alert">
+                        {alertMessage}
+                    </div>
+                )}
                 <div className='text-center mb-4'>
                     <h1 className='h3 font-weight-bold'>Criar minha conta</h1>
                     <p className='text-muted'>Digite seus dados para se cadastrar.</p>

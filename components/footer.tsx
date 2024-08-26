@@ -28,7 +28,7 @@ function Footer() {
                             <div className="footer-widget">
 
                                 <div className="footer-logo">
-                                    <a href="/"><Image src="/lopgo-placapedia-laranja.png" alt="Logo" height={55} width={200} /></a>
+                                    <a href="/"><Image src="/logo-placapedia-laranja.webp" alt="Logo" height={55} width={200} /></a>
                                 </div>
                                 <div className='text-white'>CNPJ 35635897/0001-04</div>
 

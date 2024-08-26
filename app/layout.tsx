@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description: "A Solução Completa para Consulta Veicular! Obtenha informações detalhadas sobre chassi, Renavam, multas, histórico de furtos e muito mais, tudo com apenas a placa do veículo.",
   keywords: ['placa', 'veículo', 'procurar veículo', 'procurar placa', 'informações de veículo', 'informações de placa', 'informações de carros'],
   openGraph: {
-    images: [{ url: '/logo-placapedia.png', alt: 'Placapedia' }], // Será 'https://placapedia.com/logo.png'
+    images: [{ url: '/logo-placapedia.webp', alt: 'Placapedia' }], // Será 'https://placapedia.com/logo.png'
   },
 };
 

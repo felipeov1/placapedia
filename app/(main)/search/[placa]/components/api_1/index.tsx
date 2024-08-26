@@ -12,34 +12,35 @@ import {
 import CarInformationsSlide from './placa-informations';
 import Loading from '@/components/loading';
 import axios from 'axios';
+import data from '../../../../../../fake'
 
 function Api1Informations({ placa }: { placa: string }) {
 
-    const [data, setData] = useState<any[]>([]);
-    const [withoutData, setWithoutData] = useState<boolean>(false);
+    // const [data, setData] = useState<any[]>([]);
+    // const [withoutData, setWithoutData] = useState<boolean>(false);
 
-    useEffect(() => {
-        const getData = async () => {
-            const res = await axios.get(`https://wdapi2.com.br/consulta/${placa}/${process.env.NEXT_PUBLIC_TOKEN_1}`);
-            if (!res.data) {
-                setWithoutData(true);
-            }
-            setData(res.data);
-        };
-        getData();
-    }, [placa]);
+    // useEffect(() => {
+    //     const getData = async () => {
+    //         const res = await axios.get(`https://wdapi2.com.br/consulta/${placa}/${process.env.NEXT_PUBLIC_TOKEN_1}`);
+    //         if (!res.data) {
+    //             setWithoutData(true);
+    //         }
+    //         setData(res.data);
+    //     };
+    //     getData();
+    // }, [placa]);
 
-    if (!data) {
-        return (
-            <Loading />
-        );
-    };
+    // if (!data) {
+    //     return (
+    //         <Loading />
+    //     );
+    // };
 
-    if (withoutData) {
-        return (
-            <Loading text='Não foi possivel encontrar o veiculo que deseja, por favor entre em contato com o suporte' />
-        );
-    };
+    // if (withoutData) {
+    //     return (
+    //         <Loading text='Não foi possivel encontrar o veiculo que deseja, por favor entre em contato com o suporte' />
+    //     );
+    // };
 
     return (
         <div className='flex flex-col gap-2 max-w-[95%] lg:max-w-[1020px] min-w-[80%]'>

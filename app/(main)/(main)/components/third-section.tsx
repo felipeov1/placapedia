@@ -25,42 +25,44 @@ function ThirdSection({ prices }: { prices: any }) {
                             <h2 className='card-title' style={{ textTransform: 'uppercase' }}>Consultar Veículo
                             </h2>
                             <p>Confira informações detalhadas sobre o carro, incluindo multas, restrições e dados cadastrais.</p>
+                            <h6>De <span style={{ textDecoration: 'line-through', color: '#fa0000' }}>R$ {'12,99'}</span> por</h6>
+
                             <h2 className='text-price'>R$ {prices?.api_2 || '--'}</h2>
                             <p className='per-consult'>POR CONSULTA</p>
                             <ul className='list-unstyled mt-4'>
-                                <li className='d-flex align-items-center justify-content-center mb-2'>
-                                    <Check className='text-success me-2' /> Chassi
+                                <li className='d-flex align-items-center justify-content-left mb-2'>
+                                    <i className="bi bi-check-circle-fill m-2"></i> Chassi
                                 </li>
-                                <li className='d-flex align-items-center justify-content-center mb-2'>
-                                    <Check className='text-success me-2' /> Renavam
+                                <li className='d-flex align-items-center justify-content-left mb-2'>
+                                    <i className="bi bi-check-circle-fill m-2"></i> Renavam
                                 </li>
-                                <li className='d-flex align-items-center justify-content-center mb-2'>
-                                    <Check className='text-success me-2' /> Motor
+                                <li className='d-flex align-items-center justify-content-left mb-2'>
+                                    <i className="bi bi-check-circle-fill m-2"></i> Motor
                                 </li>
-                                <li className='d-flex align-items-center justify-content-center mb-2'>
-                                    <Check className='text-success me-2' /> Informações Cadastrais
+                                <li className='d-flex align-items-center justify-content-left mb-2'>
+                                    <i className="bi bi-check-circle-fill m-2"></i> Informações Cadastrais
                                 </li>
-                                <li className='d-flex align-items-center justify-content-center mb-2'>
-                                    <Check className='text-success me-2' /> Restrições
+                                <li className='d-flex align-items-center justify-content-left mb-2'>
+                                    <i className="bi bi-check-circle-fill m-2"></i> Restrições
                                 </li>
-                                <li className='d-flex align-items-center justify-content-center mb-2'>
-                                    <Check className='text-success me-2' /> Débitos
+                                <li className='d-flex align-items-center justify-content-left mb-2'>
+                                    <i className="bi bi-check-circle-fill m-2"></i> Débitos
                                 </li>
-                                <li className='d-flex align-items-center justify-content-center mb-2'>
-                                    <Check className='text-success me-2' /> Multa
+                                <li className='d-flex align-items-center justify-content-left mb-2'>
+                                    <i className="bi bi-check-circle-fill m-2"></i> Multa
                                 </li>
-                                <li className='d-flex align-items-center justify-content-center mb-2'>
-                                    <Check className='text-success me-2' /> Ano de Licenciamento
+                                <li className='d-flex align-items-center justify-content-left mb-2'>
+                                    <i className="bi bi-check-circle-fill m-2"></i> Ano de Licenciamento
                                 </li>
-                                <li className='d-flex align-items-center justify-content-center mb-2'>
-                                    <Check className='text-success me-2' /> Recalls Pendentes
+                                <li className='d-flex align-items-center justify-content-left mb-2'>
+                                    <i className="bi bi-check-circle-fill m-2"></i> Recalls Pendentes
                                 </li>
                             </ul>
                         </div>
-                        <a href="" className='text-center mb-2'>Ver exemplo de conuslta</a>
+                        {/* <a href="" className='text-center mb-2'>Ver exemplo de conuslta</a> */}
                         <div className='text-center'>
                             <Button variant="placapedia" id='btn-buy-plan'>
-                                <a href="#main_section" className='text-decoration-none'>Adquirir Agora</a>
+                                <a href="#main_section" className='text-decoration-none'>Consultar Agora</a>
                             </Button>
                         </div>
                     </div>
@@ -68,50 +70,59 @@ function ThirdSection({ prices }: { prices: any }) {
 
                 {/* Tabela da direita */}
                 <div className='col-md-4 mb-4'>
-                    <div className='card-table-price card mx-auto p-3' style={{ maxWidth: '1000px', height: '100%' }}>
+                    <div className='card-table-price card mx-auto p-3' style={{ maxWidth: '1000px' }}>
                         <div className='card-body text-center'>
                             <h2 className='card-title' style={{ textTransform: 'uppercase' }}>Consultar leilão
                             </h2>
                             <p>Veja o histórico de leilões do veículo, incluindo datas e detalhes sobre avarias e condições.</p>
-                            <h2 className='text-price' style={{ marginTop: "40px" }}>R$ {prices?.api_3 || '--'}</h2>
+                            <h6>De <span style={{ textDecoration: 'line-through', color: '#fa0000' }}>R$ {'24,99'}</span> por</h6>
+                            <h2 className='text-price' >R$ {prices?.api_3 || '--'}</h2>
                             <p className='per-consult'>POR CONSULTA</p>
-                            <ul className='list-unstyled mb-5 mt-5'>
-
-                                <li className='d-flex align-items-center justify-content-center mb-2'>
-                                    <Check className='text-success me-2' /> Leiloeiro
+                            <ul className='list-unstyled mb-4 mt-4'>
+                                <li className='d-flex align-items-center justify-content-left mb-2'>
+                                <i className="bi bi-check-circle-fill m-2"></i>Leiloeiro
                                 </li>
-                                <li className='d-flex align-items-center justify-content-center mb-2'>
-                                    <Check className='text-success me-2' /> Chassi
+                                <li className='d-flex align-items-center justify-content-left mb-2'>
+                                    <i className="bi bi-check-circle-fill m-2"></i> Chassi
                                 </li>
-                                <li className='d-flex align-items-center justify-content-center mb-2'>
-                                    <Check className='text-success me-2' /> Remarcação de chassi
+                                <li className='d-flex align-items-center justify-content-left mb-2'>
+                                    <i className="bi bi-check-circle-fill m-2"></i> Remarcação de chassi
                                 </li>
-                                <li className='d-flex align-items-center justify-content-center mb-2'>
-                                    <Check className='text-success me-2' /> Pátio
+                                <li className='d-flex align-items-center justify-content-left mb-2'>
+                                    <i className="bi bi-check-circle-fill m-2"></i> Pátio
                                 </li>
-                                <li className='d-flex align-items-center justify-content-center mb-2'>
-                                    <Check className='text-success me-2' /> Datas
+                                <li className='d-flex align-items-center justify-content-left mb-2'>
+                                    <i className="bi bi-check-circle-fill m-2"></i> Datas
                                 </li>
-                                <li className='d-flex align-items-center justify-content-center mb-2'>
-                                    <Check className='text-success me-2' /> Dados do Veículo
+                                <li className='d-flex align-items-center justify-content-left mb-2'>
+                                    <i className="bi bi-check-circle-fill m-2"></i> Dados do Veículo
+                                </li>
+                                <li className='d-flex align-items-center justify-content-left mb-2'>
+                                    <i className="bi bi-check-circle-fill m-2"></i> Lote
+                                </li>
+                                <li className='d-flex align-items-center justify-content-left mb-2'>
+                                    <i className="bi bi-check-circle-fill m-2"></i> Comitente
+                                </li>
+                                <li className='d-flex align-items-center justify-content-left mb-2'>
+                                    <i className="bi bi-check-circle-fill m-2"></i> Análise de Risco Detalhada
                                 </li>
 
                             </ul>
                         </div>
-                        <a href=""  className='text-center mb-2'>Ver exemplo de conuslta</a>
+                        {/* <a href=""  className='text-center mb-2'>Ver exemplo de conuslta</a> */}
                         <div className='text-center'>
                             <Button variant="placapedia" id='btn-buy-plan'>
-                                <a href="#main_section" className='text-decoration-none'>Adquirir Agora</a>
+                                <a href="#main_section" className='text-decoration-none'>Consultar Agora</a>
                             </Button>
                         </div>
                     </div>
                 </div>
                 <p className='talk-with-us-plan d-flex justify-content-center'>Ficou com dúvida?&nbsp;<a href="https://api.whatsapp.com/send?phone=5517991486467&text=Ol%C3%A1,%20tudo%20bem?%20Vim%20pelo%20site%20da%20placapedia%20e%20preciso%20de%20ajuda." target="_blank">Fale com a gente</a></p>
                 <div className='d-flex justify-content-center gap-3'>
-                    <Image src="/visa-logo.svg" alt="cartão visa" width={80} height={80} />
-                    <Image src="/mastercard-logo.svg" alt="cartão mastercard" width={80} height={80} />
-                    <Image src="/amex-logo.svg" alt="cartão american express" width={80} height={80} />
-                    <Image src="/pix-logo.svg" alt="pix" width={90} height={80} />
+                    <Image className='payment-icon' src="/visa-logo.svg" alt="cartão visa" width={80} height={80} />
+                    <Image className='payment-icon' src="/mastercard-logo.svg" alt="cartão mastercard" width={80} height={80} />
+                    <Image className='payment-icon' src="/amex-logo.svg" alt="cartão american express" width={80} height={80} />
+                    <Image className='payment-icon' src="/pix-logo.svg" alt="pix" width={90} height={80} />
                 </div>
                 <p className='talk-with-us-plan d-flex justify-content-center'>Para visualizar todas formas de pagamento acesse o carrinho de compras</p>
 

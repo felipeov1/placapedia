@@ -1,43 +1,247 @@
 @font-face {
-  font-family: 'CarPlate';
-  src: url('../../../../fonts/FE-FONT.TTF') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'CarPlate';
+    src: url('../../../../fonts/FE-FONT.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
+
 
 .numberPlate {
-  font-family: 'CarPlate';
+    font-family: 'CarPlate' !important;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0 5px;
+    font-size: 46px;
 }
 
-.protectedInfos {
-  height: 300px;
-  width: 80% !important;
+.loading{
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: wrap !important;
 }
 
-.infoBack {
-  background-color: white !important;
-  border-radius: 15px;
-  padding: 10px;
-  display: inline-block; /* Ajusta o tamanho conforme o conteúdo */
-  white-space: nowrap; /* Evita quebra de linha */
+.subtitle-search-page {
+    width: 60% !important;
+    font-weight: 500 !important;
+    margin-bottom: 0px !important;
 }
 
-.info-box {
-  margin: 10px; /* Espaçamento maior entre as caixas de informação */
+@media (max-width: 991px) {
+    .subtitle-search-page {
+        display: none !important;
+    }
+
+    .free-infos {
+        flex-direction: column !important;
+    }
+
+    .infos-free {
+        margin-left: 0px !important;
+    }
+
+    .div-plate {
+        margin-right: 0px !important;
+    }
 }
 
-.info-title {
-  margin-bottom: 5px;
-  font-size: 15px !important;
-  font-weight: bolder;
-  color: #03045E;
+@media (max-width: 390px) {
+    .license-plate-image {
+        width: 300px !important;
+        height: 130px !important;
+    }
+
+    .infos-free {
+        gap: 0px !important;
+    }
 }
 
-span.text-center {
-  font-size: 12px;
+.title-search-page {
+    font-weight: bolder !important;
+    font-size: 35px !important;
+    text-align: center !important;
 }
 
-.infosData {
-  font-size: 16px;
-  font-weight: bold;
+.input-data {
+    width: auto !important;
+    height: 50px !important;
+    font-size: 30px !important;
+}
+
+.box-free-infos {
+    border: none !important;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px !important;
+    border-radius: 10px !important;
+    width: 80% !important;
+}
+
+@media (max-width: 500px) {
+    .box-free-infos {
+        width: 100% !important;
+    }
+}
+
+.protected-info {
+    height: 500px !important;
+    width: 100% !important;
+    margin-top: 30px !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.btn-show-info {
+    background-color: #02024B !important;
+    border: none !important;
+    position: relative !important;
+    bottom: 12% !important;
+}
+
+.modalSelect{
+    border: 1px solid black;
+}
+
+.border-select {
+    border-color: #02024B !important;
+}
+
+.border-no-select {
+    border-color: rgba(163, 163, 163, 0.315) !important;
+}
+
+.ckeck-box {
+    border-radius: 2px !important;
+}
+
+.selectVeichle {
+    margin-right: 30px !important;
+}
+
+@media (max-width: 767px) {
+    .container-cards-options {
+        flex-wrap: wrap !important;
+        height: 67vh !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+    .dialog {
+        width: 80% !important;
+    }
+    .modalSelect {
+        width: 80% !important;
+    }
+    .selectLeilao {
+        margin-right: 30px !important;
+    }
+}
+
+
+
+@media (min-width: 768px) {
+    .card-pix {
+        margin-right: 40px !important;
+    }
+}
+
+@media (max-width: 370px) {
+    .dialog {
+        width: 100% !important;
+    }
+}
+
+.priceModal {
+    font-weight: bolder !important;
+    color: black !important;
+    font-size: 25px !important;
+}
+
+.btnNext {
+    background-color: #02024B !important;
+    border: none !important;
+}
+
+.svg-colored {
+    filter: invert(6%) sepia(100%) saturate(7298%) hue-rotate(250deg) brightness(45%) contrast(115%) !important;
+}
+
+.title-search-result {
+    display: flex !important;
+    background-color: #0131b1 !important;
+    color: rgb(255, 255, 255) !important;
+    height: 80px !important;
+    align-content: center !important;
+    flex-wrap: wrap !important;
+    padding: 1rem !important;
+    border-radius: 5px !important;
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+.title-search-result h6 {
+    font-size: 25px !important;
+}
+
+@media (max-width: 570px) {
+    .title-search-result h6 {
+        font-size: 20px !important;
+    }
+}
+
+@media (max-width: 470px) {
+    .title-search-result h6 {
+        font-size: 18px !important;
+    }
+}
+
+@media (max-width: 428px) {
+    .title-search-result h6 {
+        font-size: 15px !important;
+    }
+}
+
+.accordion-button {
+    font-size: 20px !important;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #02024B !important;
+    color: #ffffff !important;
+}
+
+.accordion-button:not(.collapsed)::after {
+    filter: brightness(0) invert(1) !important;
+}
+
+.accordion-button:hover {
+    background-color: #02024B !important;
+    color: #ffffff !important;
+}
+
+.accordion-button:hover::after {
+    filter: brightness(0) invert(1) !important;
+}
+
+.data-table {
+    font-size: 25px !important;
+    display: flex !important;
+    width: fit-content !important;
+    padding: 10px !important;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px !important;
+}
+
+.title-data-table {
+    text-transform: uppercase !important;
+    margin-right: 10px !important;
+    font-weight: bolder !important;
+    color: #02024B !important;
+    font-size: 20px !important;
+}
+
+.accordion-body {
+    margin-top: 1rem !important;
+    margin-bottom: 2rem !important;
+}
+
+.data-item {
+    margin-top: 30px !important;
 }

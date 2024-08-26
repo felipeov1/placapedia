@@ -124,8 +124,6 @@ export const addHistoric = async (userID: string | null, newHistoric: IHistoric)
 };
 
 type Prices = {
-    label_api_1: string,
-    api_1: string,
     label_api_2: string,
     api_2: string,
     label_api_3: string,
@@ -134,8 +132,6 @@ type Prices = {
 export const addPricesInDatabase = async () => {
     try {
         const prices = await addDoc(collection(db, 'prices'), {
-            label_api_1: '10,97',
-            api_1: '3,50',
             label_api_2: '16,90',
             api_2: '7,47',
             label_api_3: '32,20',
@@ -163,8 +159,6 @@ export const getPricesInDatabase = async (id: string) => {
             return docSnap.data();
         } else {
             return {
-                label_api_1: '10,97',
-                api_1: '3,50',
                 label_api_2: '16,90',
                 api_2: '7,47',
                 label_api_3: '32,20',
@@ -174,8 +168,6 @@ export const getPricesInDatabase = async (id: string) => {
     } catch (error) {
         console.error("Erro ao consulmir dados: ", error);
         return {
-            label_api_1: '10,97',
-            api_1: '3,50',
             label_api_2: '16,90',
             api_2: '7,47',
             label_api_3: '32,20',

@@ -1,6 +1,7 @@
 import HeaderSearchPage from '@/components/headerSearchPage';
 import { Toaster } from '@/components/ui/toaster';
 import React from 'react';
+import './search-page.css';
 
 function LayoutPlaca({ children }: { children: React.ReactNode }) {
     return (

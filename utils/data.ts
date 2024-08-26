@@ -11,12 +11,6 @@ const paymentName = async (api: '1' | '2' | '3', params: { placa: string }) => {
     }
 
     switch (api) {
-        case '1':
-            return {
-                name: `Veículo ${params.placa}, pesquisa 1.0`,
-                description: `A placa pedia vai liberar as informações do veículo ${params.placa}, ao realizar o pagamento.`,
-                price: transformToStripeAmount(prices?.api_1)
-            };
         case '2':
             return {
                 name: `Veículo ${params.placa}, pesquisa 2.0`,
@@ -31,9 +25,9 @@ const paymentName = async (api: '1' | '2' | '3', params: { placa: string }) => {
             };
         default:
             return {
-                name: `Veículo ${params.placa}, pesquisa 1.0`,
+                name: `Veículo ${params.placa}, pesquisa 2.0`,
                 description: `A placa pedia vai liberar as informações do veículo ${params.placa}, ao realizar o pagamento.`,
-                price: transformToStripeAmount(prices?.api_1)
+                price: transformToStripeAmount(prices?.api_2)
             };
     }
 }
