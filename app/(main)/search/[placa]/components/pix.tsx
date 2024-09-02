@@ -116,7 +116,7 @@ import { AppContext } from '@/context/context';
 import '../search-page.css';
 
 type Props = {
-    api:  '2' | '3',
+    api: '2' | '3',
     setModal: Dispatch<SetStateAction<boolean>>
 };
 
@@ -182,13 +182,14 @@ function Pix({ api, setModal }: Props) {
     }
 
     return (
-        <div className="w-full h-80 flex items-center justify-center flex-col">
+        <div className="d-flex flex-column justify-content-center align-items-center w-100 h-80">
             {showAlert && (
                 <div className="alert alert-danger position-fixed bottom-0 end-0 m-3" role="alert">
                     {alertMessage}
                 </div>
             )}
-            <h3 className="text-center text-2xl text-blue-500 font-bold">R$
+            <h3 className="text-center fw-bold" style={{ color: '#023E8A' }}>
+                R$
                 {api === '2' && ` ${prices?.api_2}`}
                 {api === '3' && ` ${prices?.api_3}`}
             </h3>
@@ -197,11 +198,12 @@ function Pix({ api, setModal }: Props) {
                 <Image src={data.qrcode.imagemQrcode} alt="pix qrCode" width={200} height={200} />
             )}
             <div className="mt-5">
-                <Button onClick={handleClickConfirmPayment} className="bg-blue-500 hover:bg-blue-800">
+                <Button onClick={handleClickConfirmPayment} className="btn btn-primary">
                     Confirmar meu pagamento
                 </Button>
             </div>
         </div>
+
     );
 }
 

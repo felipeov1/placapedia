@@ -1058,4 +1058,5 @@ color: #878787;
 .containerData2 {
   max-width: 1650px !important; /* Defina a largura máxima desejada */
   margin: 0 auto !important; /* Centraliza o contêiner */
+  width: fit-content !important;
 }

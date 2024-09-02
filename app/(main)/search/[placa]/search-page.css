@@ -5,6 +5,10 @@
     font-style: normal;
 }
 
+.infos-free{
+    flex-wrap: wrap !important;
+}
+
 
 .numberPlate {
     font-family: 'CarPlate' !important;
@@ -20,12 +24,18 @@
     display: flex !important;
     flex-direction: column !important;
     flex-wrap: wrap !important;
+    align-content: center;
+    align-items: center;
 }
 
 .subtitle-search-page {
     width: 60% !important;
     font-weight: 500 !important;
     margin-bottom: 0px !important;
+}
+
+.free-infos{
+    align-content: center;
 }
 
 @media (max-width: 991px) {
@@ -39,6 +49,11 @@
 
     .infos-free {
         margin-left: 0px !important;
+        flex-direction: column !important;
+    }
+
+    .year{
+        margin-top: 150px !important;
     }
 
     .div-plate {
@@ -54,6 +69,8 @@
 
     .infos-free {
         gap: 0px !important;
+        flex-direction: column !important;
+
     }
 }
 
@@ -73,7 +90,7 @@
     border: none !important;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px !important;
     border-radius: 10px !important;
-    width: 80% !important;
+    width: 90% !important;
 }
 
 @media (max-width: 500px) {

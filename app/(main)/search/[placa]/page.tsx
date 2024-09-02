@@ -159,7 +159,6 @@ const CarInformations: React.FC = () => {
             try {
                 const token = await getAuthToken();
                 if (token && isMounted) {
-                    // const res = await axios.post(`${process.env.NEXT_PUBLIC_URL_BASE}/api/api_externas/main`, {
                     const res = await axios.post(`${process.env.NEXT_PUBLIC_URL_BASE}/api/api_externas/main`, {
                         placa: params.placa
                     }, {
@@ -232,8 +231,8 @@ const CarInformations: React.FC = () => {
                     </div>
                     <div className='w-full d-flex flex-column flex-wrap items-center justify-content-center align-content-center mt-5'>
                         {data && (
-                            <div className="box-free-infos p-5 container-fluid" style={{ borderRadius: '8px' }}>
-                                <div className="free-infos d-flex align-items-center justify-content-center" style={{ width: '100%' }}>
+                            <div className="box-free-infos container-fluid" style={{ borderRadius: '8px' }}>
+                                <div className="free-infos flex-wrap d-flex align-items-center justify-content-center" style={{ width: '100%' }}>
                                     <div className="div-plate position-relative" style={{ flexShrink: 0, marginRight: '20px' }}>
                                         <Image className='license-plate-image' src={'/blank-license-plate.webp'} alt="placa-imagem" width={400} height={150} />
                                         <p className='numberPlate'>
@@ -241,16 +240,20 @@ const CarInformations: React.FC = () => {
                                         </p>
 
                                     </div>
-                                    <div className="infos-free d-flex flex-row ms-5" style={{ flexShrink: 0, gap: '30px' }}>
+                                    <div className="infos-free  d-flex flex-row ms-5" style={{ flexShrink: 0, gap: '30px' }}>
                                         <div className="d-flex flex-column align-items-start p-3">
                                             <label className='fs-6'>MARCA</label>
-                                            <span className='input-data fw-bold'>{data.MARCA}</span>
+                                            <span className='input-data fw-bold' 
+                                            >{data.MARCA}</span>
                                         </div>
-                                        <div className="d-flex flex-column align-items-start p-3">
+                                        <div
+                                            className="d-flex flex-column align-items-start p-3"
+                                           
+                                        >
                                             <label className='fs-6'>MODELO</label>
                                             <span className='input-data fw-bold'>{data.MODELO}</span>
                                         </div>
-                                        <div className="d-flex flex-column align-items-start p-3">
+                                        <div className="year d-flex flex-column align-items-start p-3">
                                             <label className='fs-6'>ANO</label>
                                             <span className='input-data fw-bold'>{data.ano}</span>
                                         </div>
